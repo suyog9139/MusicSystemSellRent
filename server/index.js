@@ -31,6 +31,12 @@ mongoose.connect(process.env.MONGO_URL,{
 
 }).catch((error)=>console.log(`${error} did not connect`))
 
+//routes
+app.get('/hello',(req,res)=>{
+    res.send("Products")
+})
+app.use('/api/v1/product',product)
+app.use('/api/v1/orders',orders)
 
 
 
