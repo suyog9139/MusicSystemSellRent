@@ -1,14 +1,14 @@
-const GetAllProducts=(req,res)=>{
+export const GetAllProducts=(req,res)=>{
     res.send("all items")
 }
 
-const ShowCategoryProducts=(req,res)=>{
+export const ShowCategoryProducts=(req,res)=>{
     res.json({category:req.params.category})
 }
 
 
 
 
-module.exports={
-    GetAllProducts,ShowCategoryProducts
-}
+// module.exports={
+//     GetAllProducts,ShowCategoryProducts
+// }

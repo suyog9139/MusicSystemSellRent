@@ -1,7 +1,7 @@
-const express=require('express')
+import express from 'express'
 const router=express.Router()
-const {GetOneOrder}=require('../controllers/orders')
-
-router.route('/:id').get(GetOneOrder)
-
-module.exports=router
+// const {GetOneOrder}=require('../controllers/orders')
+import {GetOneOrder} from '../controllers/orders.js'
+// router.route('/:id').get(GetOneOrder)
+router.get('/:id',GetOneOrder)
+export default router
