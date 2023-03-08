@@ -8,6 +8,7 @@ import helmet from 'helmet';
 import morgan from 'morgan';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import User from "./models/User.js";
 import product from './routes/product.js'
 import orders from './routes/orders.js'
 
@@ -24,6 +25,7 @@ app.use(express.json());
 /*Mongoose setup*/
 const PORT = process.env.PORT ||3005
 mongoose.connect(process.env.MONGO_URL,{
+    dbName: `Music_System`,
     useNewUrlParser: true,
     useUnifiedTopology: true,
 }).then(()=>{
