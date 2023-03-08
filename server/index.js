@@ -9,6 +9,7 @@ import morgan from 'morgan';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import User from "./models/User.js";
+import authRoutes from "./routes/auth.js";
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
@@ -17,7 +18,8 @@ dotenv.config();
 const app = express();
 app.use(express.json());
 
-
+/* Routes */
+app.use("/auth", authRoutes);
 
 
 /*Mongoose setup*/
@@ -32,11 +34,6 @@ mongoose.connect(process.env.MONGO_URL,{
 }).catch((error)=>console.log(`${error} did not connect`))
 
 
-
-
-
-
-
-
-
-
+import crypto from 'crypto';
+const jwtSecret = crypto.randomBytes(32).toString('hex');
+console.log(jwtSecret)

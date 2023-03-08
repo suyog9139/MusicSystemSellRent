@@ -3,7 +3,7 @@ import mongoose from 'mongoose';
 
 
 const UserSchema = new mongoose.Schema({
-    Name:{
+    name:{
         type: String,
         required: true,
         min:2,
@@ -28,14 +28,18 @@ const UserSchema = new mongoose.Schema({
         required: true,
         min:5,
     },
-    isVerified:{
-        type: Boolean,
-        default: false
-    },
     isSuperuser:{
         type: Boolean,
         default: true
-    }
+    },
+    verificationCode: {
+        type: String
+    },
+    verified: {
+        type: Boolean,
+        default: false
+    },
+    
 },{timestamp:true});
 
 
