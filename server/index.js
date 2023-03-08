@@ -9,6 +9,7 @@ import morgan from 'morgan';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import User from "./models/User.js";
+import authRoutes from "./routes/auth.js";
 import product from './routes/product.js'
 import orders from './routes/orders.js'
 
@@ -19,7 +20,8 @@ dotenv.config();
 const app = express();
 app.use(express.json());
 
-
+/* Routes */
+app.use("/auth", authRoutes);
 
 
 /*Mongoose setup*/
@@ -40,11 +42,6 @@ app.get('/hello',(req,res)=>{
 app.use('/api/v1/product',product)
 app.use('/api/v1/orders',orders)
 
-
-
-
-
-
-
-
-
+import crypto from 'crypto';
+const jwtSecret = crypto.randomBytes(32).toString('hex');
+console.log(jwtSecret)
