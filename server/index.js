@@ -10,6 +10,8 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import User from "./models/User.js";
 import authRoutes from "./routes/auth.js";
+import product from './routes/product.js'
+import orders from './routes/orders.js'
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
@@ -33,6 +35,12 @@ mongoose.connect(process.env.MONGO_URL,{
 
 }).catch((error)=>console.log(`${error} did not connect`))
 
+//routes
+app.get('/hello',(req,res)=>{
+    res.send("Products")
+})
+app.use('/api/v1/product',product)
+app.use('/api/v1/orders',orders)
 
 import crypto from 'crypto';
 const jwtSecret = crypto.randomBytes(32).toString('hex');
