@@ -27,11 +27,10 @@ const ProductSchema= new mongoose.Schema({
     Rating:{
         type:Number,
         required:true
+    },
+    Image:{
+        type:String
     }
-    // Image:{
-    //     type:ImageBitmap,
-    //     required:false
-    // }
 },{timestamp:true});
 
 const Product =mongoose.model("Product",ProductSchema);
