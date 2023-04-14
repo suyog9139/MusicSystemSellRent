@@ -4,7 +4,7 @@ const AboutPage = () => {
   return (
     <>
       <Navbar />
-      <div className="container my-3 py-3">
+      <div className="container my-3 py-3" style={{ backgroundColor: '#b0bec5', color: '#343a40' }}>
         <h1 className="text-center">About Us</h1>
         <hr />
         <p className="lead text-center">

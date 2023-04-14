@@ -6,7 +6,7 @@ const Login = () => {
   return (
     <>
       <Navbar />
-      <div className="container my-3 py-3">
+      <div className="container my-3 py-3" style={{ backgroundColor: '#b0bec5', color: '#343a40' }}>
         <h1 className="text-center">Login</h1>
         <hr />
         <div class="row my-4 h-100">
@@ -31,10 +31,10 @@ const Login = () => {
                 />
               </div>
               <div className="my-3">
-                <p>New Here? <Link to="/register" className="text-decoration-underline text-info">Register</Link> </p>
+                <p>New Here? <Link to="/register" className="text-decoration-underline text-info"><h6>Register</h6></Link> </p>
               </div>
               <div className="text-center">
-                <button class="my-2 mx-auto btn btn-dark" type="submit" disabled>
+                <button class="my-2 mx-auto btn btn-dark" type="submit">
                   Login
                 </button>
               </div>
