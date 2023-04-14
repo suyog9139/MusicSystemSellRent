@@ -2,22 +2,22 @@ import React from "react";
 
 const Footer = () => {
   return (
-    <>
+    
     <div className="container-fluid d-flex flex-column vh-100">
-      <footer className="mb-0 text-center text-body sticky-bottom" style={{ backgroundColor: '#b3e5fc', color: '#343a40' }}>
+      <footer className="mt-auto text-center text-body sticky-bottom" style={{ backgroundColor: '#18004d', color: 'white' }}>
         <div className="d-flex align-items-center justify-content-center pb-5">
           <div className="col-md-6">
-            <p className="mb-3 mb-md-0">Made with ❤️ by {"Suyog, Tanmay, Nayan, Aditya"}
+            <p className=" text-white mb-3 mb-md-0">Made with ❤️ by {"Suyog, Tanmay, Nayan, Aditya"}
              
             </p>
-            <a className="text-dark fs-4" href="https://github.com/suyog9139/MusicSystemSellRent" target="_blank" rel="noreferrer">
+            <a className="text-white fs-4" href="https://github.com/suyog9139/MusicSystemSellRent" target="_blank" rel="noreferrer">
               <i className="fa fa-github"></i>
             </a>
           </div>
         </div>
       </footer>
-      </div>
-    </>
+      </div> 
+    
   );
 };
 
