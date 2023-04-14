@@ -24,7 +24,6 @@ const Login = () => {
                   placeholder="name@example.com"
                 />
               </div>
-              
               <div class="form-check">
                 <input
                   class="form-check-input"
