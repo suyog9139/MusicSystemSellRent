@@ -3,7 +3,8 @@ import React from "react";
 const Footer = () => {
   return (
     <>
-      <footer className="mb-0 text-center text-body" style={{ backgroundColor: '#b3e5fc', color: '#343a40' }}>
+    <div className="container-fluid d-flex flex-column vh-100">
+      <footer className="mb-0 text-center text-body sticky-bottom" style={{ backgroundColor: '#b3e5fc', color: '#343a40' }}>
         <div className="d-flex align-items-center justify-content-center pb-5">
           <div className="col-md-6">
             <p className="mb-3 mb-md-0">Made with ❤️ by {"Suyog, Tanmay, Nayan, Aditya"}
@@ -15,6 +16,7 @@ const Footer = () => {
           </div>
         </div>
       </footer>
+      </div>
     </>
   );
 };
