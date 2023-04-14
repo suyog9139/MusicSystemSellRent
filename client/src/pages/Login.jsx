@@ -6,7 +6,10 @@ const Login = () => {
   return (
     <>
       <Navbar />
-      <div className="container my-3 py-3" style={{ backgroundColor: '#b0bec5', color: '#343a40' }}>
+      <div
+        className="container my-3 py-3"
+        style={{ backgroundColor: "#b0bec5", color: "lack" }}
+      >
         <h1 className="text-center">Login</h1>
         <hr />
         <div class="row my-4 h-100">
@@ -21,6 +24,20 @@ const Login = () => {
                   placeholder="name@example.com"
                 />
               </div>
+              
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  value=""
+                  id="flexCheckDefault"
+                />
+             
+                <label class="form-check-label" for="flexCheckDefault">
+                  Remember Me
+                </label>
+              </div>
+
               <div class="my-3">
                 <label for="floatingPassword display-4">Password</label>
                 <input
@@ -30,8 +47,16 @@ const Login = () => {
                   placeholder="Password"
                 />
               </div>
-              <div className="my-3">
-                <p>New Here? <Link to="/register" className="text-decoration-underline text-info"><h6>Register</h6></Link> </p>
+              <div className="my-3 text-center text-black">
+                <p>
+                  New Here?{" "}
+                  <Link
+                    to="/register"
+                    className="text-decoration-underline text-info text-black text-center"
+                  >
+                    <h6>Register</h6>
+                  </Link>{" "}
+                </p>
               </div>
               <div className="text-center">
                 <button class="my-2 mx-auto btn btn-dark" type="submit">
