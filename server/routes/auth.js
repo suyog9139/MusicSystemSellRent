@@ -1,7 +1,7 @@
 import express from 'express';
 import {forget_password, login, logout, register, reset_password} from "../controllers/auth.js"
 import bodyParser from 'body-parser';
-// import { verify } from 'crypto';
+import { verify } from 'crypto';
 
 const router = express.Router();
 

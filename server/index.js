@@ -56,6 +56,7 @@ app.get('/hello',(req,res)=>{
 })
 app.use('/api/v1/product',product)
 app.use('/api/v1/orders',orders)
+app.use('/api/v1/auth',authRoutes)
 
 import crypto from 'crypto';
 const jwtSecret = crypto.randomBytes(32).toString('hex');

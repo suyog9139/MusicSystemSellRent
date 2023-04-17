@@ -8,14 +8,14 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
-import User from "./models/User.js";
+import User from "../models/User.js";
 
 const router = express.Router();
 
-const vonage = new Vonage({
-    apiKey: "process.env.YOUR_API_KEY",
-    apiSecret: "process.env.YOUR_API_SECRET"
-})
+// const vonage = new Vonage({
+//     apiKey: "process.env.YOUR_API_KEY",
+//     apiSecret: "process.env.YOUR_API_SECRET"
+// })
 
 
 
@@ -92,43 +92,21 @@ export const verify = async (req, res) => {
 };
 
 export const login = async (req, res) => {
-    const errors = validationResult(req);
-    if (!errors.isEmpty()) {
-      return res.status(400).json({ errors: errors.array() });
+  try{
+    const {phone, password} = req.body;
+    const user = await User.findOne({phone: phone});
+    if(!user) return res.status(400).json({msg: "User not found"});
+
+    const isMatch = await bcrypt.compare(password, user.password);
+    if(!isMatch) return res.status(401).json({msg: "Invalid credentials"});
+
+    const token = jwt.sign({id: user._id}, process.env.JWT_SECRET);
+    delete user.password;
+    res.status(200).json({token,user});
+    }catch(err){
+        res.status(500).json({error: err.message});
     }
-  
-    const { phone, password } = req.body;
-  
-    try {
-      // Check if user exists
-      let user = await User.findOne({ phone });
-      if (!user) {
-        return res.status(400).json({ errors: [{ msg: 'Invalid credentials' }] });
-      }
-  
-      // Check if phone is verified
-      if (!user.verified) {
-        return res.status(400).json({ errors: [{ msg: 'Phone number not verified' }] });
-      }
-  
-      // Check if password matches
-      const isMatch = await bcrypt.compare(password, user.password);
-      if (!isMatch) {
-        return res.status(400).json({ errors: [{ msg: 'Invalid credentials' }] });
-      }
-  
-      // Generate JWT token
-      const payload = { user: { id: user.id } };
-      jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: '1h' }, (err, token) => {
-        if (err) {
-          throw err;
-        }
-        res.json({ token });
-      });
-    } catch (err) {
-      console.error(err.message);
-      res.status(500).json({ errors: [{ msg: 'Server error' }] });
-    }
+    
   };
   
 
