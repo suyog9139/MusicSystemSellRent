@@ -8,10 +8,9 @@ const Register = () => {
       <Navbar />
       <div
         className="container my-3 py-3"
-        style={{ backgroundColor: "#b0bec5", color: "black" }}
+        // style={{ backgroundColor: "#b0bec5", color: "black" }}
       >
-        <h1 className="text-center">Register</h1>
-        <hr />
+        <h1 className="text-center fs-1">Register</h1>
         <div class="row my-4 h-100">
           <div className="col-md-4 col-lg-4 col-sm-8 mx-auto">
             <form>
@@ -19,7 +18,7 @@ const Register = () => {
                 <label for="Name">Full Name</label>
                 <input
                   type="email"
-                  class="form-control"
+                  class="form-control form-control"
                   id="Name"
                   placeholder="Enter Your Name"
                 />
@@ -28,7 +27,7 @@ const Register = () => {
                 <label for="Email">Email address</label>
                 <input
                   type="email"
-                  class="form-control"
+                  class="form-control form-control"
                   id="Email"
                   placeholder="name@example.com"
                 />
@@ -37,14 +36,14 @@ const Register = () => {
                 <label for="Password">Password</label>
                 <input
                   type="password"
-                  class="form-control"
+                  class="form-control form-control"
                   id="Password"
                   placeholder="Password"
                 />
               </div>
               <div className="my-3 black text-center">
                 <p>
-                  Already has an account?{" "}
+                  Already have an account?{" "}
                   <Link
                     to="/login"
                     className="text-decoration-underline text-info text-black text-center"
@@ -54,7 +53,7 @@ const Register = () => {
                 </p>
               </div>
               <div className="text-center">
-                <button class="my-2 mx-auto btn btn-dark" type="submit">
+                <button class="my-2 mx-auto btn btn-primary btn-lg btn-block" type="submit">
                   Register
                 </button>
               </div>
