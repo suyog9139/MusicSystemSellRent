@@ -1,0 +1,13 @@
+{
+    "type": "service_account",
+    "project_id": "musicrentsellstore",
+    "private_key_id": "c6db325b5b2dd028223113f9a4c80c33c15065c7",
+    "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQCm035tFe/BsKWn\nKynQtBM4yfj79QqtJo+jIDhQzM8W1FQjMjeCfLNw06kbtqUJQMZdyAMuWn4vgaJn\nUQZ1NcqlgrR+CysuEPkKnSwxDeaTr9uLXEl5gO88ah2cNoU/dQlU9UrYuJIzL20O\nytVY0tXLdDs3nQf2j4ZxO4+bcHwhj+00NKLm1+sDeC0QSb72xKCFt5j9xpc11wAK\nw+ju0ovSYBQtwn3VpYgrRdE1tvN+nuFrlCQemMbHC8Nnn2klBwd+wABaarcGzzKA\nvZ1baeV5GKm5DQBIsmH0gsQLf6MTPBzf6YR3QhVS+cMPJGlCS9znuN4lQDA6efTA\nMq6Mlh1dAgMBAAECggEAJpxMZnLtSqbXsBkNVIBY8ovMVIQiNHD4TYjnf8vnIiGC\nV6MHteumnDZgrUlYaQvU3V+tXM0U52nZbJAULoyEmknl/EYZeE/1U7+Mus28z/Gj\nnl19o+FzfUgSElWMAWPVBRTAfeg57h7L3uCTADvLv4rnKbfuX+JX+10Nn6wpDpsg\n7Ue1hkXylAZ5h1CKAUTtwe88jAFKevLB+bphNou/m64jg7GTZjquaygzV2AAT7Y1\nQVWx7g3dagY6h8kso7bgbQ6OG2n7a/ijxFT/gLT7d0h1AQL9WB0ekaPaKnluf2Gs\nYClf8ut78hp3GuV9H5JzAeqiU+dfgcKDdkdT7JsbAQKBgQDj3ePkE+19Zee8UmX2\nBuBkeelDEZOgJWCdE793YqAdUQWJUHu8cNFOhBYpIwybDD5WtK81EwFA8YiO9lVm\n2a3uh5pCsP0GSpVuom512mQ5HRDxP9qvunEhIE0eMEaRmrVNWxHonKg5GbAGftvi\nQOnZolm1pPqyCxfTfpM3FYuUKwKBgQC7bFAoccbnPHdeJWqDgXZYA8FmNJtcqeSd\nn5XPxtjxntOI8XGSi3o5A7LsIXYY/eD/g/EH020z4Mr1jmQg3JJGzmNkYTDQxRGI\ngp3xIRTcOFGBOZoJ4yQ+9adoC3/wG1vyDagUWvK5KLUO1gL9vRHERwgiC3MSjd0u\nVwtPs9EolwKBgG61YsBwUiVnunRL0E/9PU5z0LoOMxxOrKcEbjTxzPsRX1A8szF1\n2qt8D0xDRB+cjjkQJkPyDNzhvMhAtHN49UF7zp3yYayJ1hpffq1xwtng3ldn/7b7\nLXW7vNwa9l5NvSJtScErQ6wiZ9xwDCLcCQH9F/rhwg94xkWyLJJJvHvrAoGAT5AK\nczDhnBYqIjhGAC98Op7VgfrBHVQt7c/qO/sQ63leGVtNuEUnjH6KfP0zciaMVkv/\njS/uwsAhyJ462UxpeE9zGBC+NVIDQG0aeVtuzJHH39DBGINpRqTn/R4soJQssxOj\nD4kQUxP50KN/P5H8sdLpm/I6Vl0M0Pg4oAwYtV8CgYB04Nyn+mJhSC9x2k/MnN9j\n7yEvwqawY+0J4ysptxfXknQl/6rkGT7N4kBozZ73fpmbM9eiruKP+sqcShkIQdtN\nFiVepayp06+zXj7e9VXoafdz0ol3hS+8C6w3tlvrb66ph1I1LEHTZd4+wiixpIfV\nMi4EaDg55ZgdK6nGlmUAyg==\n-----END PRIVATE KEY-----\n",
+    "client_email": "firebase-adminsdk-z3sum@musicrentsellstore.iam.gserviceaccount.com",
+    "client_id": "101887566094137206218",
+    "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+    "token_uri": "https://oauth2.googleapis.com/token",
+    "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+    "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-z3sum%40musicrentsellstore.iam.gserviceaccount.com"
+  }
+  
