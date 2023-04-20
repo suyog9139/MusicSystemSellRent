@@ -1,30 +1,54 @@
 import React from "react";
+import Carousel from 'react-bootstrap/Carousel';
 
 const Home = () => {
   return (
     <>
-      <div className="hero border-1 pb-3">
-        <div className="card bg-dark text-white border-0 mx-3">
-          <img
-            className="card-img img-fluid"
-            src="./assets/main.png.jpg"
-            alt="Card"
-            height={500}
-          />
-          <div className="card-img-overlay d-flex align-items-center" >
-            <div className="container">
-              <h5 className="card-title fs-1 text fw-lighter">New Season Arrivals</h5>
-              <p className="card-text fs-5 d-none d-sm-block ">
-                This is a wider card with supporting text below as a natural
-                lead-in to additional content. This content is a little bit
-                longer.
-              </p>
-            </div>
-          </div>
+     <Carousel variant="dark">
+      <Carousel.Item interval={null}>
+        <div style={{width:"100vw", height:"32rem",}}>
+        <img style={{ width:"100%",height:"100%", }}
+          className="d-block "
+          src={require("./wallpaperflare.com_wallpaper.jpg")}
+          alt="First slide"
+        />
         </div>
-      </div>
+        
+        <Carousel.Caption style={{color:"white"}}>
+          <h5>First slide label</h5>
+          <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+        </Carousel.Caption>
+      </Carousel.Item>
+      <Carousel.Item>
+      <div style={{width:"100vw", height:"32rem",}}>
+        <img style={{ width:"100%",height:"100%", }}
+          className="d-block"
+          src={require("./wallpaperflare.com_wallpaper.jpg")}
+          alt="First slide"
+        />
+        </div>
+        <Carousel.Caption style={{color:"white"}}>
+          <h5>Second slide label</h5>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+        </Carousel.Caption>
+      </Carousel.Item>
+      <Carousel.Item>
+      <div style={{width:"100vw", height:"32rem",}}>
+        <img style={{ width:"100%",height:"100%", }}
+          className="d-block "
+          src={require("./wallpaperflare.com_wallpaper.jpg")}
+          alt="First slide"
+        />
+        </div>
+        <Carousel.Caption style={{color:"white"}}>
+          <h5>Third slide label</h5>
+          <p>
+            Praesent commodo cursus magna, vel scelerisque nisl consectetur.
+          </p>
+        </Carousel.Caption>
+      </Carousel.Item>
+    </Carousel>
     </>
   );
 };
-
 export default Home;

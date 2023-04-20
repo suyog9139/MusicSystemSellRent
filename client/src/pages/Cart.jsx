@@ -10,6 +10,7 @@ const Cart = () => {
 
   const EmptyCart = () => {
     return (
+      <>
       <div className="container">
         <div className="row">
           <div className="col-md-12 py-5 bg-light text-center">
@@ -20,6 +21,7 @@ const Cart = () => {
           </div>
         </div>
       </div>
+       </>
     );
   };
 
@@ -157,6 +159,7 @@ const Cart = () => {
             </div>
           </div>
         </section>
+
       </>
     );
   };
@@ -169,7 +172,6 @@ const Cart = () => {
         <hr />
         {state.length > 0 ? <ShowCart /> : <EmptyCart />}
       </div>
-      <Footer />
     </>
   );
 };
