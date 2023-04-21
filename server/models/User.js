@@ -21,6 +21,9 @@ const UserSchema = new mongoose.Schema({
         default: false
     },
     
+    
+
+    
 },{timestamp:true});
 
 
