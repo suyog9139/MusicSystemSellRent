@@ -13,6 +13,7 @@ import User from "./models/User.js";
 import authRoutes from "./routes/auth.js";
 import product from './routes/product.js'
 import orders from './routes/orders.js'
+import payment from './routes/payment.js'
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -20,7 +21,7 @@ const __dirname = path.dirname(__filename);
 dotenv.config();
 const app = express();
 app.use(express.json());
-
+app.use(cors())
 /* FOR IMAGE STORAGE */
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
@@ -57,7 +58,23 @@ app.get('/hello',(req,res)=>{
 app.use('/api/v1/product',product)
 app.use('/api/v1/orders',orders)
 app.use('/api/v1/auth',authRoutes)
+app.use('/api/v1/payment',payment)
+app.get("/api/v1/getkey", (req, res) =>
+  res.status(200).json({ key: process.env.RAZORPAY_API_KEY })
+);
+
+
 
 import crypto from 'crypto';
 const jwtSecret = crypto.randomBytes(32).toString('hex');
 console.log(jwtSecret)
+
+
+// Razorpay
+import Razorpay from 'razorpay';
+// import payments from "razorpay/dist/types/payments.js";
+
+export const instance =new Razorpay({
+    key_id: process.env.RAZORPAY_API_KEY,
+    key_secret:process.env.RAZORPAY_API_SECRET
+});

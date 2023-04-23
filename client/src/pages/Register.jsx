@@ -132,7 +132,7 @@ const Register = () => {
                       <div class="form my-3">
                         <label for="Name">Full Name</label>
                         <input
-                          type="String"
+                          type="string"
                           value={name}
                           onChange={setName}
                           class="form-control form-control"
@@ -141,12 +141,12 @@ const Register = () => {
                         />
                       </div>
                       <div class="form my-3">
-                        <label for="Phone">Email address</label>
+                        <label for="Phone">Phone</label>
                         <PhoneInput
                           country={"in"}
                           value={ph}
                           onChange={setPh}
-                          class="form-control"
+                          class="my-2 mx-auto btn btn-primary btn-lg btn-block w-50px"
                         />
                       </div>
                       <div class="form  my-3">
@@ -174,7 +174,7 @@ const Register = () => {
                       <div className="text-center">
                         <button
                           onClick={onSignup}
-                          className="my-2 mx-auto btn btn-dark"
+                          className="my-2 mx-auto btn btn-primary btn-lg btn-block"
                         >
                           {loading && (
                             <CgSpinner

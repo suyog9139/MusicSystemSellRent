@@ -18,12 +18,12 @@ const Login = () => {
           <div className="col-md-4 col-lg-4 col-sm-8 mx-auto">
             <form>
               <div class="my-3">
-                <label for="display-3">Email address</label>
+                <label for="display-3">Phone</label>
                 <input
                   type="email"
                   class="form-control form-control"
                   id="floatingInput"
-                  placeholder="name@example.com"
+                  placeholder="9658245215"
                 />
               </div>
               {/* <div class="form-check">
