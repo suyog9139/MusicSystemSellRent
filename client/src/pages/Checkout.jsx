@@ -2,7 +2,9 @@ import React from "react";
 import { Footer, Navbar } from "../components";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-const Checkout = () => {
+import axios from "axios";
+
+const Checkout = ({ amount, img, checkoutHandler }) => {
   const state = useSelector((state) => state.handleCart);
 
   const EmptyCart = () => {
@@ -31,6 +33,44 @@ const Checkout = () => {
     state.map((item) => {
       return (totalItems += item.qty);
     });
+
+    const checkoutHandler = async (amount) => {
+      const {
+        data: { key },
+      } = await axios.get("http://www.localhost:3001/api/v1/getkey");
+
+      const {
+        data: { order },
+      } = await axios.post("http://localhost:3001/api/v1/payment/checkout", {
+        amount,
+      });
+
+      const options = {
+        callback_url:"http://localhost:3001/api/v1/payment/paymentverification/",
+        key,
+        amount: order.amount,
+        currency: "INR",
+        name: "VM Music Systems",
+        description: "Buy and Rend Music Systems",
+        image: "https://example.com/your_logo",
+        order_id: order.id,
+        
+        prefill: {
+          name: "Gaurav Kumar",
+          email: "gaurav.kumar@example.com",
+          contact: "9999999999",
+        },
+        notes: {
+          address: "Razorpay Corporate Office",
+        },
+        theme: {
+          color: "#121212",
+        },
+      };
+      const razor = new window.Razorpay(options);
+      razor.open();
+    };
+
     return (
       <>
         <div className="container py-5">
@@ -43,7 +83,8 @@ const Checkout = () => {
                 <div className="card-body">
                   <ul className="list-group list-group-flush">
                     <li className="list-group-item d-flex justify-content-between align-items-center border-0 px-0 pb-0">
-                      Products ({totalItems})<span>${Math.round(subtotal)}</span>
+                      Products ({totalItems})
+                      <span>${Math.round(subtotal)}</span>
                     </li>
                     <li className="list-group-item d-flex justify-content-between align-items-center px-0">
                       Shipping
@@ -196,84 +237,14 @@ const Checkout = () => {
 
                     <hr className="my-4" />
 
-                    <h4 className="mb-3">Payment</h4>
-
-                    <div className="row gy-3">
-                      <div className="col-md-6">
-                        <label for="cc-name" className="form-label">
-                          Name on card
-                        </label>
-                        <input
-                          type="text"
-                          className="form-control"
-                          id="cc-name"
-                          placeholder=""
-                          required
-                        />
-                        <small className="text-muted">
-                          Full name as displayed on card
-                        </small>
-                        <div className="invalid-feedback">
-                          Name on card is required
-                        </div>
-                      </div>
-
-                      <div className="col-md-6">
-                        <label for="cc-number" className="form-label">
-                          Credit card number
-                        </label>
-                        <input
-                          type="text"
-                          className="form-control"
-                          id="cc-number"
-                          placeholder=""
-                          required
-                        />
-                        <div className="invalid-feedback">
-                          Credit card number is required
-                        </div>
-                      </div>
-
-                      <div className="col-md-3">
-                        <label for="cc-expiration" className="form-label">
-                          Expiration
-                        </label>
-                        <input
-                          type="text"
-                          className="form-control"
-                          id="cc-expiration"
-                          placeholder=""
-                          required
-                        />
-                        <div className="invalid-feedback">
-                          Expiration date required
-                        </div>
-                      </div>
-
-                      <div className="col-md-3">
-                        <label for="cc-cvv" className="form-label">
-                          CVV
-                        </label>
-                        <input
-                          type="text"
-                          className="form-control"
-                          id="cc-cvv"
-                          placeholder=""
-                          required
-                        />
-                        <div className="invalid-feedback">
-                          Security code required
-                        </div>
-                      </div>
-                    </div>
-
-                    <hr className="my-4" />
-
                     <button
-                      className="w-100 btn btn-primary "
-                      type="submit" disabled
+                      type="button"
+                      className="btn btn-dark btn-lg btn-block"
+                      onClick={() =>
+                        checkoutHandler(Math.round(subtotal + shipping))
+                      }
                     >
-                      Continue to checkout
+                      Buy Now
                     </button>
                   </form>
                 </div>
