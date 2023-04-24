@@ -37,24 +37,36 @@ const Checkout = ({ amount, img, checkoutHandler }) => {
     const checkoutHandler = async (amount) => {
       const {
         data: { key },
-      } = await axios.get("http://www.localhost:3001/api/v1/getkey");
+      } = await axios.get("http://www.localhost:4000/api/getkey");
 
       const {
         data: { order },
-      } = await axios.post("http://localhost:3001/api/v1/payment/checkout", {
+      } = await axios.post("http://localhost:4000/api/checkout", {
         amount,
       });
 
       const options = {
-        callback_url:"http://localhost:3001/api/v1/payment/paymentverification/",
         key,
         amount: order.amount,
         currency: "INR",
-        name: "VM Music Systems",
-        description: "Buy and Rend Music Systems",
-        image: "https://example.com/your_logo",
+        name: "VM Music System",
+        description: "Buy Rent Web",
+        image: "",
         order_id: order.id,
-        
+        // callback_url: "http://localhost:4000/api/paymentverification/",
+        handler: async function (response) {
+    
+          const {
+            data: { success },
+          }=await axios.post("http://localhost:4000/api/paymentverification/", {
+            razorpay_payment_id: response.razorpay_payment_id,
+            razorpay_order_id: response.razorpay_order_id,
+            razorpay_signature: response.razorpay_signature,
+          });
+          if(success){
+            window.location.href = `http://localhost:3000/paymentsuccess?reference=${response.razorpay_payment_id}`;  
+          }
+        },
         prefill: {
           name: "Gaurav Kumar",
           email: "gaurav.kumar@example.com",
