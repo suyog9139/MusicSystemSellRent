@@ -22,6 +22,7 @@ dotenv.config();
 const app = express();
 app.use(express.json());
 app.use(cors())
+app.use(bodyParser.json());
 /* FOR IMAGE STORAGE */
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
@@ -58,8 +59,10 @@ app.get('/hello',(req,res)=>{
 app.use('/api/v1/product',product)
 app.use('/api/v1/orders',orders)
 app.use('/api/v1/auth',authRoutes)
-app.use('/api/v1/payment',payment)
-app.get("/api/v1/getkey", (req, res) =>
+// app.use('/api/v1/payment',payment)
+app.use("/api", payment);
+
+app.get("/api/getkey", (req, res) =>
   res.status(200).json({ key: process.env.RAZORPAY_API_KEY })
 );
 
