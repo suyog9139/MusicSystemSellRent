@@ -16,15 +16,7 @@ const ProductSchema= new mongoose.Schema({
         type:Number,
         required:true
     },
-    isRentable:{
-        type:Boolean,
-        required:true
-    },
     Stock:{
-        type:Number,
-        required:true
-    },
-    Rating:{
         type:Number,
         required:true
     },
