@@ -1,4 +1,4 @@
-import { instance } from "../index.js";
+import { instance } from "../server.js";
 import crypto from "crypto";
 import { Payment } from "../models/payment.js";
 import dotenv from "dotenv";

@@ -1,23 +1,49 @@
 import { CgSpinner } from "react-icons/cg";
 import { Footer, Navbar } from "../components";
 import OtpInput from "otp-input-react";
-import { useState } from "react";
-import { Link } from "react-router-dom";
-
+import { useEffect, useState } from "react";
+import { Link, Navigate } from "react-router-dom";
+import axios from "axios";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
 import { auth } from "../firebase.config";
 import { RecaptchaVerifier, signInWithPhoneNumber } from "firebase/auth";
 import { toast, Toaster } from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
+
 
 const Register = () => {
   const [otp, setOtp] = useState("");
-  const [ph, setPh] = useState("");
+  const [phone, setPhone] = useState("");
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [showOTP, setShowOTP] = useState(false);
   const [user, setUser] = useState(null);
+  const navigate = useNavigate();
+  useEffect(()=>{
+    const auth = localStorage.getItem('user');
+    if(auth){
+      navigate('/')
+    }
+  },[])
+
+  const handleSubmit = async (e) => {
+    // e.preventDefault();
+    // console.log(email, first_name, last_name, password);
+    try {
+      await axios.post(
+        "http://localhost:4000/api/v1/auth/register",
+        JSON.stringify({ name, phone, password }),
+        {
+          headers: { "Content-Type": "application/json" },
+        }
+      );
+        // console.log(response.data);
+        // console.log(response.accessToken);
+        // console.log(JSON.stringify(response));
+    } catch (err) {}
+  };
 
   function onCaptchVerify() {
     if (!window.recaptchaVerifier) {
@@ -41,7 +67,7 @@ const Register = () => {
 
     const appVerifier = window.recaptchaVerifier;
 
-    const formatPh = "+" + ph;
+    const formatPh = "+" + phone;
 
     signInWithPhoneNumber(auth, formatPh, appVerifier)
       .then((confirmationResult) => {
@@ -62,6 +88,8 @@ const Register = () => {
       .confirm(otp)
       .then(async (res) => {
         console.log(res);
+        await handleSubmit();
+        // handleSubmit();
         setUser(res.user);
         setLoading(false);
       })
@@ -81,6 +109,7 @@ const Register = () => {
         {user ? (
           <h2 className="text-center text-white font-medium text-2xl">
             👍Login Success
+
             {/* Write code post api for creating user also renevigate to login page*/}
           </h2>
         ) : (
@@ -133,28 +162,33 @@ const Register = () => {
                         <label for="Name">Full Name</label>
                         <input
                           type="string"
-                          value={name}
-                          onChange={setName}
                           class="form-control form-control"
                           id="Name"
                           placeholder="Enter Your Name"
+                          required
+                          onChange={(e) => setName(e.target.value)}
                         />
                       </div>
                       <div class="form my-3">
                         <label for="Phone">Phone</label>
                         <PhoneInput
                           country={"in"}
-                          value={ph}
-                          onChange={setPh}
+                          value={phone}
+                          onChange={setPhone}
+                          // onChange={(e) => setPhone(e.target.value)}
                           class="my-2 mx-auto btn btn-primary btn-lg btn-block w-50px"
+                          required
+                          autoComplete="False"
+                          // onChange={(e) => setPhone(e.target.value)}
                         />
                       </div>
                       <div class="form  my-3">
                         <label for="Password">Password</label>
                         <input
                           type="password"
-                          value={password}
-                          onChange={setPassword}
+                          // value={password}
+                          // onChange={setPassword}
+                          onChange={(e) => setPassword(e.target.value)}
                           class="form-control form-control"
                           id="Password"
                           placeholder="Password"
@@ -174,6 +208,7 @@ const Register = () => {
                       <div className="text-center">
                         <button
                           onClick={onSignup}
+                          // onClick={() => handleSubmit()}
                           className="my-2 mx-auto btn btn-primary btn-lg btn-block"
                         >
                           {loading && (

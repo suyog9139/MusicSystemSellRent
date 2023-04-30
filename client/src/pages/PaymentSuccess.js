@@ -7,6 +7,7 @@ const PaymentSuccess = () => {
 
     const referenceNum = seachQuery.get("reference")
     return (
+        
         <Box>
             <VStack h="100vh" justifyContent={"center"}>
 

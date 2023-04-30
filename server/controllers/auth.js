@@ -28,17 +28,19 @@ export const register = async (req, res) => {
 
   try {
     // Check if user with email or phone already exists
-    // let user = await User.findOne({ $or: [{ phone }] });
-    // if (user) {
-    //   return res.status(400).json({ errors: [{ msg: 'User already exists' }] });
-    // }
+    let user = await User.findOne({ $or: [{ phone }] });
+    if (user) {
+      return res.status(400).json({ errors: [{ msg: 'User already exists' }] });
+    }
     // Hash password
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(password, salt);
     // Save user to database
     const result = await User.create({ name, phone, password: hashedPassword });
     // await user.save();
+    console.log("Success User");
     const payload = { phone:result.phone, id:result._id };
+
     const token = jwt.sign(
       payload,
       process.env.JWT_SECRET,
