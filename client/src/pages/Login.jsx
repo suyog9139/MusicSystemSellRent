@@ -1,7 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { Footer, Navbar } from "../components";
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
+import PhoneInput from "react-phone-input-2";
+
 import AuthContext from "../context/AuthProvider";
 import { useNavigate, useLocation } from "react-router-dom";
 
@@ -12,12 +14,12 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
   const location = useLocation();
-  useEffect(()=>{
-    const auth = localStorage.getItem('user');
-    if(auth){
-      navigate('/')
+  useEffect(() => {
+    const auth = localStorage.getItem("user");
+    if (auth) {
+      navigate("/");
     }
-  },[])
+  }, []);
   // const { setauth } = useContext(AuthContext);
   // const { setrefreshToken } = useContext(AuthContext);
   const from = location.state?.from?.pathname || "/";
@@ -71,13 +73,23 @@ const Login = () => {
               <form onSubmit={handleSubmit}>
                 <div class="my-3">
                   <label for="display-3">Phone</label>
-                  <input
+                  {/* <input
                     type="Phone"
                     class="form-control form-control"
                     id="floatingInput"
                     placeholder="9658245215"
                     required
                     onChange={(e) => setPhone(e.target.value)}
+                  /> */}
+                  <PhoneInput
+                    country={"in"}
+                    value={phone}
+                    onChange={setPhone}
+                    // onChange={(e) => setPhone(e.target.value)}
+                    class="my-2 mx-auto btn btn-primary btn-lg btn-block w-50px"
+                    required
+                    autoComplete="False"
+                    // onChange={(e) => setPhone(e.target.value)}
                   />
                 </div>
                 <div class="my-3">

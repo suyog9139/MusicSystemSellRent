@@ -1,10 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
 import { Footer, Navbar } from "../components";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import axios from "axios";
 
 const Checkout = ({ amount, img, checkoutHandler }) => {
+  const [first_name, setFirst_name] = useState("");
+  const [last_name, setLast_name] = useState("");
+  const [phone, setPhone] = useState("");
+  const [address, setAddress] = useState("");
+  const [country, setCountry] = useState("");
+  const [address2, setAddress2] = useState("");
+  const [statet, setStatet] = useState("");
+  const [zip, setZip] = useState("");
   const state = useSelector((state) => state.handleCart);
 
   const EmptyCart = () => {
@@ -59,6 +67,7 @@ const Checkout = ({ amount, img, checkoutHandler }) => {
           const {
             data: { success },
           }=await axios.post("http://localhost:4000/api/paymentverification/", {
+            
             razorpay_payment_id: response.razorpay_payment_id,
             razorpay_order_id: response.razorpay_order_id,
             razorpay_signature: response.razorpay_signature,
@@ -68,9 +77,9 @@ const Checkout = ({ amount, img, checkoutHandler }) => {
           }
         },
         prefill: {
-          name: "Gaurav Kumar",
-          email: "gaurav.kumar@example.com",
-          contact: "9999999999",
+          name: first_name+last_name,
+          // email: "gaurav.kumar@example.com",
+          contact: phone,
         },
         notes: {
           address: "Razorpay Corporate Office",

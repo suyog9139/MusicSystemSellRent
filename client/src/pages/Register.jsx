@@ -81,7 +81,6 @@ const Register = () => {
         setLoading(false);
       });
   }
-
   function onOTPVerify() {
     setLoading(true);
     window.confirmationResult
@@ -92,6 +91,8 @@ const Register = () => {
         // handleSubmit();
         setUser(res.user);
         setLoading(false);
+        alert("Successfully verified")
+        navigate('/login')
       })
       .catch((err) => {
         console.log(err);
