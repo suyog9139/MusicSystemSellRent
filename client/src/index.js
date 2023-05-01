@@ -5,6 +5,7 @@ import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import store from './redux/store';
+import RequiredAuth from './pages/RequiredAuth'
 
 
 import { Home, Product, Products, AboutPage, ContactPage, Cart, Login, Register, Checkout, PageNotFound, PaymentSuccess } from "./pages"
@@ -14,6 +15,7 @@ root.render(
   <BrowserRouter>
     <Provider store={store}>
       <Routes>
+        {/* <Route element={<RequiredAuth/>}/> */}
         <Route path="/" element={<Home />} />
         <Route path="/product" element={<Products />} />
         <Route path="/product/:id" element={<Product />} />
