@@ -39,6 +39,37 @@ export const ShowPurchaseProduct=async(req,res)=>{
         res.status(404).json({ message: err.message });
     }
 };
+
+export const DeleteProduct =async(req,res)=>{
+    try{
+        let results=await Product.deleteOne({Name:req.params.Name});
+        res.status(200).json(results);
+    } catch(err){
+        res.status(404).json({ message: err.message });
+    }
+};
+
+export const AddProduct =async(req,res)=>{
+    try{
+        let product= new Product(req.body);
+        let results= await product.save();
+        res.status(200).json(results);
+    } catch(err){
+        res.status(404).json({ message: err.message });
+    }
+};
+
+export const UpdateProduct =async(req,res)=>{
+    try{
+        let results=Product.updateOne(
+            {Name:req.params.Name},
+            {$set: req.body}
+        );
+        res.status(200).json(results);
+    } catch(err){
+        res.status(404).json({ message: err.message });
+    }
+};
 // module.exports={
 //     GetAllProducts,ShowCategoryProducts
 // }
