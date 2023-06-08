@@ -12,7 +12,7 @@ import User from "./models/User.js";
 
 import authRoutes from "./routes/auth.js";
 import product from './routes/product.js'
-import orders from './routes/orders.js'
+// import orders from './routes/orders.js'
 import payment from './routes/payment.js'
 
 const __filename = fileURLToPath(import.meta.url);
@@ -68,7 +68,7 @@ app.get('/hello',(req,res)=>{
     res.send("Products")
 })
 app.use('/api/v1/product',product)
-app.use('/api/v1/orders',orders)
+// app.use('/api/v1/orders',orders)
 app.use('/api/v1/auth',authRoutes)
 // app.use('/api/v1/payment',payment)
 app.use("/api", payment);

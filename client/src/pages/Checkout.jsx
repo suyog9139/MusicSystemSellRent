@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Footer, Navbar } from "../components";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
@@ -14,6 +14,13 @@ const Checkout = ({ amount, img, checkoutHandler }) => {
   const [statet, setStatet] = useState("");
   const [zip, setZip] = useState("");
   const state = useSelector((state) => state.handleCart);
+  // const auth = localStorage.getItem("user");
+  const auth = JSON.parse(localStorage.getItem("user"));
+  const [products, setProducts] = useState([]);
+  useEffect(() => {
+    const product = state.map((item) => [item.title,item.price, item.qty]);
+    setProducts(product);
+  }, []);
 
   const EmptyCart = () => {
     return (
@@ -63,21 +70,24 @@ const Checkout = ({ amount, img, checkoutHandler }) => {
         order_id: order.id,
         // callback_url: "http://localhost:4000/api/paymentverification/",
         handler: async function (response) {
-    
           const {
             data: { success },
-          }=await axios.post("http://localhost:4000/api/paymentverification/", {
-            
-            razorpay_payment_id: response.razorpay_payment_id,
-            razorpay_order_id: response.razorpay_order_id,
-            razorpay_signature: response.razorpay_signature,
-          });
-          if(success){
-            window.location.href = `http://localhost:3000/paymentsuccess?reference=${response.razorpay_payment_id}`;  
+          } = await axios.post(
+            "http://localhost:4000/api/paymentverification/",
+            {
+              razorpay_payment_id: response.razorpay_payment_id,
+              razorpay_order_id: response.razorpay_order_id,
+              razorpay_signature: response.razorpay_signature,
+              product: products,
+              customer_id: auth._id,
+            }
+          );
+          if (success) {
+            window.location.href = `http://localhost:3000/paymentsuccess?reference=${response.razorpay_payment_id}`;
           }
         },
         prefill: {
-          name: first_name+last_name,
+          name: first_name + last_name,
           // email: "gaurav.kumar@example.com",
           contact: phone,
         },
