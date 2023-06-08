@@ -39,11 +39,11 @@ export const paymentVerification = async (req, res) => {
 
   const isAuthentic = expectedSignature === razorpay_signature;
 
-  if (!isAuthentic) {
+  if (isAuthentic) {
     // Database comes here
     try {
       const productDocuments = product.map((product) => ({
-        product_id: product[0],
+        description:product[0],
         price: product[1],
         quantity:product[2],
       }));
@@ -55,7 +55,7 @@ export const paymentVerification = async (req, res) => {
       
 
       const payment = await Payment.create({
-        // product: productDocuments,
+        product: productDocuments,
         customer: customer_id,
         razorpay_order_id,
         razorpay_payment_id,

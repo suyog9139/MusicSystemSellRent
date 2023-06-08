@@ -18,7 +18,7 @@ const Checkout = ({ amount, img, checkoutHandler }) => {
   const auth = JSON.parse(localStorage.getItem("user"));
   const [products, setProducts] = useState([]);
   useEffect(() => {
-    const product = state.map((item) => [item.id,item.price, item.qty]);
+    const product = state.map((item) => [item.title,item.price, item.qty]);
     setProducts(product);
   }, []);
 

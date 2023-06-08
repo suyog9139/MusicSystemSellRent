@@ -1,9 +1,9 @@
 import mongoose, { Schema } from "mongoose";
 
 const product = new mongoose.Schema({
-  product_id: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "product_id",
+  description: {
+    type: String,
+    required: true,
   },
   price: {
     type:Number,
@@ -15,7 +15,7 @@ const product = new mongoose.Schema({
 });
 
 const paymentSchema = new mongoose.Schema({
-  product: [[product]],
+  product: [product],
   customer: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "customer_id",
