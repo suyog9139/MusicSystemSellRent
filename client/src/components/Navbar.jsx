@@ -4,6 +4,8 @@ import { useSelector } from "react-redux";
 
 const Navbar = () => {
   const auth = localStorage.getItem("user");
+  const auth1 = JSON.parse(localStorage.getItem("user"));
+
   const state = useSelector((state) => state.handleCart);
   const navigate = useNavigate();
   const logout = () => {
@@ -46,11 +48,22 @@ const Navbar = () => {
             {/* <li className="nav-item">
                             <NavLink className="nav-link text-white" to="/about">About</NavLink>
                         </li> */}
-            <li className="nav-item">
-              <NavLink className="nav-link text-white" to="/contact">
+            {auth1?.superuser === 1 ?
+            
+              <li className="nav-item">
+                <NavLink className="nav-link text-white" to="/admin">
+                  Admin
+                </NavLink>
+              </li>
+            :
+            null
+            }
+            
+            {/* <li className="nav-item">
+              <NavLink className="nav-link text-white" to="/admin">
                 Admin
               </NavLink>
-            </li>
+            </li> */}
             <li className="nav-item">
               <NavLink className="nav-link text-white" to="/contact">
                 Contact
