@@ -18,6 +18,11 @@ const Checkout = ({ amount, img, checkoutHandler }) => {
   const auth = JSON.parse(localStorage.getItem("user"));
   const [products, setProducts] = useState([]);
   useEffect(() => {
+    var name = localStorage.getItem('user');
+    var obj = JSON.parse(name);
+    var name1 = obj.name;
+    setFirst_name(name1);
+
     const product = state.map((item) => [item.title,item.price, item.qty]);
     setProducts(product);
   }, []);
@@ -102,6 +107,8 @@ const Checkout = ({ amount, img, checkoutHandler }) => {
       razor.open();
     };
 
+
+
     return (
       <>
         <div className="container py-5">
@@ -150,7 +157,7 @@ const Checkout = ({ amount, img, checkoutHandler }) => {
                           className="form-control"
                           id="firstName"
                           placeholder=""
-                          value=""
+                          value={first_name}
                           required
                         />
                         <div className="invalid-feedback">
@@ -242,7 +249,10 @@ const Checkout = ({ amount, img, checkoutHandler }) => {
                         <br />
                         <select className="form-select" id="state" required>
                           <option value="">Choose...</option>
-                          <option>Punjab</option>
+                          <option>Maharashtra</option>
+                          <option>Karnataka</option>
+                          <option>Goa</option>
+                          <option>Delhi</option>
                         </select>
                         <div className="invalid-feedback">
                           Please provide a valid state.
