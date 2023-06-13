@@ -17,11 +17,20 @@ const Checkout = ({ amount, img, checkoutHandler }) => {
   // const auth = localStorage.getItem("user");
   const auth = JSON.parse(localStorage.getItem("user"));
   const [products, setProducts] = useState([]);
+
   useEffect(() => {
     var name = localStorage.getItem('user');
     var obj = JSON.parse(name);
     var name1 = obj.name;
     setFirst_name(name1);
+
+    var number = obj.phone;
+    console.log(number);
+    const modifiedString = number.substring(2);
+    const newstr = "+91"+modifiedString
+    var number1 = newstr
+
+    setPhone(number1);
 
     const product = state.map((item) => [item.title,item.price, item.qty]);
     setProducts(product);
@@ -148,24 +157,25 @@ const Checkout = ({ amount, img, checkoutHandler }) => {
                 <div className="card-body">
                   <form className="needs-validation" novalidate>
                     <div className="row g-3">
-                      <div className="col-sm-6 my-1">
+                      <div className="col-12 my-1">
                         <label for="firstName" className="form-label">
-                          First name
+                          Name
                         </label>
                         <input
                           type="text"
-                          className="form-control"
+                          className="form-control "
                           id="firstName"
                           placeholder=""
                           value={first_name}
+                          // onChange={(e) => setFirst_name(e.target.value)}
                           required
                         />
                         <div className="invalid-feedback">
-                          Valid first name is required.
+                          Valid  Name is required.
                         </div>
                       </div>
 
-                      <div className="col-sm-6 my-1">
+                      {/* <div className="col-sm-6 my-1">
                         <label for="lastName" className="form-label">
                           Last name
                         </label>
@@ -180,18 +190,18 @@ const Checkout = ({ amount, img, checkoutHandler }) => {
                         <div className="invalid-feedback">
                           Valid last name is required.
                         </div>
-                      </div>
+                      </div> */}
 
                       <div className="col-12 my-1">
                         <label for="email" className="form-label">
                           Email
+                          <span> (Optional)</span>
                         </label>
                         <input
                           type="email"
                           className="form-control"
                           id="email"
                           placeholder="you@example.com"
-                          required
                         />
                         <div className="invalid-feedback">
                           Please enter a valid email address for shipping
@@ -215,18 +225,23 @@ const Checkout = ({ amount, img, checkoutHandler }) => {
                         </div>
                       </div>
 
-                      <div className="col-12">
-                        <label for="address2" className="form-label">
-                          Address 2{" "}
-                          <span className="text-muted">(Optional)</span>
-                        </label>
+                                        <div className="col-12">
+                    <label htmlFor="phoneNumber" className="form-label">
+                      Phone Number{" "}
+                      <span className="text-muted"></span>
+                    </label>
+                                        
                         <input
-                          type="text"
+                          type="tel"
                           className="form-control"
-                          id="address2"
-                          placeholder="Apartment or suite"
+                          id="phoneNumber"
+                          placeholder="Enter your phone number"
+                          pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+                          value={phone}
+                          onChange={(e) => setPhone(e.target.value)}
+                          required
                         />
-                      </div>
+                  </div>
 
                       <div className="col-md-5 my-1">
                         <label for="country" className="form-label">
