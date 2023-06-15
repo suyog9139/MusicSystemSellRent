@@ -165,7 +165,7 @@ const Checkout = ({ amount, img, checkoutHandler }) => {
                           id="firstName"
                           placeholder=""
                           value={first_name}
-                          // onChange={(e) => setFirst_name(e.target.value)}
+                          onChange={(e) => setFirst_name(e.target.value)}
                           required
                         />
                         <div className="invalid-feedback">
