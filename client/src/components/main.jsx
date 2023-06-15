@@ -6,10 +6,10 @@ const Home = () => {
     <>
      <Carousel variant="dark">
       <Carousel.Item interval={null}>
-        <div style={{width:"100vw", height:"32rem",}}>
+        <div style={{width:"100vw", height:"36rem",}}>
         <img style={{ width:"100%",height:"100%", }}
           className="d-block "
-          src={require("./wallpaperflare.com_wallpaper.jpg")}
+          src={require("./Image1.png")}
           alt="First slide"
         />
         </div>
@@ -20,7 +20,7 @@ const Home = () => {
         </Carousel.Caption>
       </Carousel.Item>
       <Carousel.Item>
-      <div style={{width:"100vw", height:"32rem",}}>
+      <div style={{width:"100vw", height:"36rem",}}>
         <img style={{ width:"100%",height:"100%", }}
           className="d-block"
           src={require("./wepik-export-20230611162411xtuI.png")}
@@ -33,7 +33,7 @@ const Home = () => {
         </Carousel.Caption>
       </Carousel.Item>
       <Carousel.Item>
-      <div style={{width:"100vw", height:"32rem",}}>
+      <div style={{width:"100vw", height:"36rem",}}>
         <img style={{ width:"100%",height:"100%", }}
           className="d-block "
           src={require("./image.png")}
