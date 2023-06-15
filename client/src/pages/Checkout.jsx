@@ -6,17 +6,16 @@ import axios from "axios";
 
 const Checkout = ({ amount, img, checkoutHandler }) => {
   const [first_name, setFirst_name] = useState("");
-  const [last_name, setLast_name] = useState("");
   const [phone, setPhone] = useState("");
   const [address, setAddress] = useState("");
-  const [country, setCountry] = useState("");
-  const [address2, setAddress2] = useState("");
   const [statet, setStatet] = useState("");
   const [zip, setZip] = useState("");
   const state = useSelector((state) => state.handleCart);
   // const auth = localStorage.getItem("user");
   const auth = JSON.parse(localStorage.getItem("user"));
   const [products, setProducts] = useState([]);
+  
+  const completeAddress = address+" "+statet +" "+zip;
 
   useEffect(() => {
     var name = localStorage.getItem('user');
@@ -94,6 +93,8 @@ const Checkout = ({ amount, img, checkoutHandler }) => {
               razorpay_signature: response.razorpay_signature,
               product: products,
               customer_id: auth._id,
+              address:completeAddress,
+              
             }
           );
           if (success) {
@@ -101,7 +102,7 @@ const Checkout = ({ amount, img, checkoutHandler }) => {
           }
         },
         prefill: {
-          name: first_name + last_name,
+          name: first_name ,
           // email: "gaurav.kumar@example.com",
           contact: phone,
         },
@@ -114,10 +115,7 @@ const Checkout = ({ amount, img, checkoutHandler }) => {
       };
       const razor = new window.Razorpay(options);
       razor.open();
-    };
-
-
-
+    };                  
     return (
       <>
         <div className="container py-5">
@@ -218,6 +216,7 @@ const Checkout = ({ amount, img, checkoutHandler }) => {
                           className="form-control"
                           id="address"
                           placeholder="1234 Main St"
+                          onChange={(e) => setAddress(e.target.value)}
                           required
                         />
                         <div className="invalid-feedback">
@@ -262,8 +261,8 @@ const Checkout = ({ amount, img, checkoutHandler }) => {
                           State
                         </label>
                         <br />
-                        <select className="form-select" id="state" required>
-                          <option value="">Choose...</option>
+                        <select onChange={(e) => setStatet(e.target.value)}  className="form-select" id="state" required>
+                          <option  value="">Choose...</option>
                           <option>Maharashtra</option>
                           <option>Karnataka</option>
                           <option>Goa</option>
@@ -283,6 +282,7 @@ const Checkout = ({ amount, img, checkoutHandler }) => {
                           className="form-control"
                           id="zip"
                           placeholder=""
+                          onChange={(e) => setZip(e.target.value)}
                           required
                         />
                         <div className="invalid-feedback">

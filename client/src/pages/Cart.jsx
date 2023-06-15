@@ -54,17 +54,18 @@ import { useEffect, useState } from "react";
 const Cart = () => {
   const state = useSelector((state) => state.handleCart);
   const dispatch = useDispatch();
-  
   useEffect(() => {
     const cartData = localStorage.getItem("cart");
-    const data = JSON.parse(cartData);
     if (cartData) {
-      data.map((item) => {
-        dispatch(addCart(item));
+      const data = JSON.parse(cartData);
+      const filteredItems = data.filter((item) =>
+        item.hasOwnProperty("qty")
+      );
+      filteredItems.map((item) => {
+        dispatch(addCart(item))
       });
-      dispatch(addCart(JSON.parse(cartData)));
     }
-  }, [dispatch]);
+ },[dispatch]);
 
   useEffect(() => {
     localStorage.setItem("cart", JSON.stringify(state));
