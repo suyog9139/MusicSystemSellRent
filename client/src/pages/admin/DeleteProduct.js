@@ -1,14 +1,25 @@
 import React, { useState } from 'react';
 import { TextField, Button, Grid } from '@mui/material';
+import axios from 'axios';
 
-const UpdateProduct = () => {
-  const [productName, setProductName] = useState('');
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // Handle form submission logic here
-    console.log('Submitted!');
-    
+const DeleteProduct = ({ productName }) => {
+   const [Name, setName] = useState('');
+  // const [description, setDescription] = useState('');
+  // const [stock,SetStock]=useState('')
+  // const [price, setPrice] = useState('');
+  // const [image, setImage] = useState(null);
+  const handleSubmit = async () => {
+    try {
+      await axios.delete(
+        `http://localhost:4000/api/v1/product/DeleteProduct/${productName}`, // Replace with your actual delete endpoint
+      );
+      setName('');
+      console.log('Product deleted successfully');
+      // Perform any additional actions after successful deletion
+    } catch (error) {
+      console.error('Error deleting product:', error);
+    }
   };
 
   return (
@@ -19,7 +30,7 @@ const UpdateProduct = () => {
         fullWidth
         label="Product Name"
         value={productName}
-        onChange={(e) => setProductName(e.target.value)}
+        onChange={(e) => setName(e.target.value)}
         required
         sx={{ width: '200px' }} // Custom style to reduce the width
       />
@@ -36,4 +47,4 @@ const UpdateProduct = () => {
   );
 };
 
-export default UpdateProduct;
+export default DeleteProduct;

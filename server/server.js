@@ -14,6 +14,7 @@ import authRoutes from "./routes/auth.js";
 import product from './routes/product.js'
 // import orders from './routes/orders.js'
 import payment from './routes/payment.js'
+// import User from './routes/User.js'
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -68,6 +69,7 @@ app.get('/hello',(req,res)=>{
     res.send("Products")
 })
 app.use('/api/v1/product',product)
+app.use('/api/v1/users',User)
 // app.use('/api/v1/orders',orders)
 app.use('/api/v1/auth',authRoutes)
 // app.use('/api/v1/payment',payment)

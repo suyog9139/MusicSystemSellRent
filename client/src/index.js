@@ -11,7 +11,7 @@ import AddProduct from './pages/admin/AddProduct';
 import DeleteProduct from './pages/admin/DeleteProduct';
 import UpdateProduct from './pages/admin/UpdateProduct';
 import Orders from './pages/admin/Orders';
-import Customers from './pages/admin/Customers';
+import Customers from './pages/admin/Users.js';
 
 
 import { Home, Product, Products, AboutPage, ContactPage, Cart, Login, Register, Checkout, PageNotFound, PaymentSuccess } from "./pages"

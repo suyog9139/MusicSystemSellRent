@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 import { TextField, Button, Grid } from '@mui/material';
 
-const UpdateProduct = () => {
-  const [productName, setProductName,Description,SetDescription] = useState('');
+const UpdateProduct = (productName) => {
+  const [NewproductName, setNewProductName] = useState('');
   const [price, setPrice] = useState('');
+  const [stock, setStock] = useState('');
+  const [Description, setDescription] = useState('');
   const [image, setImage] = useState(null);
 
   const handleImageChange = (e) => {
@@ -11,23 +14,50 @@ const UpdateProduct = () => {
     setImage(file);
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // Handle form submission logic here
-    console.log('Submitted!');
-    console.log('Product Name:', productName);
-    console.log('Price:', price);
+  const handleSubmit = async () => {
+    try {
+      await axios.put(
+        `http://localhost:4000/api/v1/product/UpdateProduct/${productName}`, 
+        {
+          Title: productName,
+          Stock: stock,
+          price: price,
+          Description: Description
+        },
+        {
+          headers: { "Content-Type": "application/json" }
+        }
+      );
+
+      console.log('Data updated successfully');
+      setNewProductName('');
+      setPrice('');
+      setStock('');
+      setDescription('');
+      setImage(null);
+    } catch (error) {
+      console.error('Error updating data:', error);
+    }
   };
 
   return (
     <form onSubmit={handleSubmit}>
   <Grid container spacing={2} justifyContent="center" alignItems="center">
+  <Grid item xs={12}>
+      <TextField
+        fullWidth
+        label="productName"
+        value={productName}        
+        required
+        sx={{ width: '200px' }} // Custom style to reduce the width
+      />
+    </Grid>
     <Grid item xs={12}>
       <TextField
         fullWidth
-        label="Product Name"
-        value={productName}
-        onChange={(e) => setProductName(e.target.value)}
+        label="NewproductName"
+        value={NewproductName}
+        onChange={(e) => setNewProductName(e.target.value)}
         required
         sx={{ width: '200px' }} // Custom style to reduce the width
       />
@@ -45,9 +75,19 @@ const UpdateProduct = () => {
     <Grid item xs={12}>
       <TextField
         fullWidth
+        label="Stock"
+        value={stock}
+        onChange={(e) => setStock(e.target.value)}
+        required
+        sx={{ width: '200px' }} // Custom style to reduce the width
+      />
+    </Grid>
+    <Grid item xs={12}>
+      <TextField
+        fullWidth
         label="Description"
         value={Description}
-        onChange={(e) => SetDescription(e.target.value)}
+        onChange={(e) => setDescription(e.target.value)}
         required
         sx={{ width: '800px' }} // Custom style to reduce the width
       />

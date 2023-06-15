@@ -26,7 +26,7 @@ import AddProduct from './AddProduct';
 import DeleteProduct from './DeleteProduct';
 import UpdateProduct from './UpdateProduct';
 import Orders from './Orders';
-import Customers from './Customers';
+import Users from './Users';
 import Dashboard from './Home';
 
 const drawerWidth = 240;
@@ -188,7 +188,7 @@ function ResponsiveDrawer(props) {
             <Route  path='/DeleteProduct' element={<DeleteProduct/>}></Route>
             <Route  path='/UpdateProduct' element={<UpdateProduct/>}></Route>
             <Route  path='/Orders' element={<Orders/>}></Route>
-            <Route  path='/Customers' element={<Customers/>}></Route>
+            <Route  path='/Users' element={<Users/>}></Route>
         </Routes>
       </Box>
     </Box>

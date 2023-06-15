@@ -1,6 +1,6 @@
 import express from 'express'
 const router=express.Router()
-import {GetAllProducts,ShowCategoryProducts,ShowRentableProduct,ShowPurchaseProduct} from '../controllers/product.js'
+import {GetAllProducts,ShowCategoryProducts,ShowRentableProduct,ShowPurchaseProduct,AddProduct,DeleteProduct,UpdateProduct} from '../controllers/product.js'
 
 
 // router.route('/').get(GetAllProducts)
@@ -10,5 +10,8 @@ router.get("/",GetAllProducts)
 router.get("/:category",ShowCategoryProducts)
 router.get("/:rent",ShowRentableProduct)
 router.get("/:purchase",ShowPurchaseProduct)
+router.post("/AddProduct",AddProduct)
+router.delete("/DeleteProduct/:name",DeleteProduct)
+router.put("UpdateProduct/:name",UpdateProduct)
 export default router
 // module.exports= router
