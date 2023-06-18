@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { TextField, Button, Grid } from '@mui/material';
 import axios from 'axios';
+import { Container } from '@chakra-ui/react';
 
 
 const DeleteProduct = ({ productName }) => {
@@ -23,6 +24,8 @@ const DeleteProduct = ({ productName }) => {
   };
 
   return (
+    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh', backgroundColor: '#f1f1f1' }}>
+    <Container maxWidth="sm" style={{ padding: '20px', border: '1px solid #ccc', borderRadius: '5px', backgroundColor: '#fff' }}>  
     <form onSubmit={handleSubmit}>
   <Grid container spacing={2} justifyContent="center" alignItems="center">
     <Grid item xs={12}>
@@ -43,7 +46,9 @@ const DeleteProduct = ({ productName }) => {
     </Grid>
   </Grid>
 </form>
-
+</Container>
+    </div>
+   
   );
 };
 

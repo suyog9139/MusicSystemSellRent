@@ -1,58 +1,58 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { Button, Grid, TextField } from '@mui/material';
+import { Button, Container, Grid, TextField } from '@mui/material';
+import ResponsiveDrawer from "./Dashboard.jsx"
 
 const AddProduct = () => {
   const [productName, setProductName] = useState('');
   const [description, setDescription] = useState('');
-  const [stock,SetStock]=useState('')
+  const [stock, setStock] = useState('');
   const [price, setPrice] = useState('');
   const [image, setImage] = useState(null);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-  
+
     try {
-      const {
-        data: { success },
-      } = await axios.post(
+      await axios.post(
         "http://localhost:4000/api/v1/product/AddProduct",
         {
           Title: productName,
           Stock: stock,
-          price: price,
+          Price: price,
           Description: description
         }
       );
-  
-      if (success) {
-        console.log('Data posted successfully');
-      }
-  
+
+      // Reset form fields
       setProductName('');
       setPrice('');
-      SetStock('');
+      setStock('');
       setDescription('');
       setImage(null);
     } catch (error) {
       if (error.response) {
-        // The request was made and the server responded with a status code
         console.error('Server responded with a status code:', error.response.status);
         console.error('Response data:', error.response.data);
         console.error('Response headers:', error.response.headers);
       } else if (error.request) {
-        // The request was made but no response was received
         console.error('No response received:', error.request);
       } else {
-        // Something happened in setting up the request that triggered an error
         console.error('Error setting up the request:', error.message);
       }
     }
   };
-  
-    
+
+  const handleImageChange = (e) => {
+    const file = e.target.files[0];
+    setImage(file);
+  };
 
   return (
+    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh', backgroundColor: '#f1f1f1' }}>
+  <Container maxWidth="sm" style={{ padding: '20px', border: '1px solid #ccc', borderRadius: '5px', backgroundColor: '#fff' }}>  
+    
+    
     <form onSubmit={handleSubmit}>
       <Grid container spacing={2} justifyContent="center" alignItems="center">
         <Grid item xs={12}>
@@ -62,7 +62,7 @@ const AddProduct = () => {
             value={productName}
             onChange={(e) => setProductName(e.target.value)}
             required
-            sx={{ width: '200px' }}
+            sx={{ width: '400px' }}
           />
         </Grid>
         <Grid item xs={12}>
@@ -72,7 +72,7 @@ const AddProduct = () => {
             value={price}
             onChange={(e) => setPrice(e.target.value)}
             required
-            sx={{ width: '200px' }}
+            sx={{ width: '400px' }}
           />
         </Grid>
         <Grid item xs={12}>
@@ -80,9 +80,9 @@ const AddProduct = () => {
             fullWidth
             label="Stock"
             value={stock}
-            onChange={(e) => SetStock(e.target.value)}
+            onChange={(e) => setStock(e.target.value)}
             required
-            sx={{ width: '200px' }}
+            sx={{ width: '400px' }}
           />
         </Grid>
         <Grid item xs={12}>
@@ -92,7 +92,7 @@ const AddProduct = () => {
             value={description}
             onChange={(e) => setDescription(e.target.value)}
             required
-            sx={{ width: '800px' }}
+            sx={{ width: '400px' }}
           />
         </Grid>
         <Grid item xs={12}>
@@ -115,6 +115,9 @@ const AddProduct = () => {
         </Grid>
       </Grid>
     </form>
+    </Container>
+    </div>
+
   );
 };
 

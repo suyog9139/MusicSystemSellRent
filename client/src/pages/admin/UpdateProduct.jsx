@@ -1,13 +1,15 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { TextField, Button, Grid } from '@mui/material';
+import { Container } from '@chakra-ui/react';
 
-const UpdateProduct = (productName) => {
+const UpdateProduct = () => {
   const [NewproductName, setNewProductName] = useState('');
   const [price, setPrice] = useState('');
   const [stock, setStock] = useState('');
   const [Description, setDescription] = useState('');
   const [image, setImage] = useState(null);
+  const [productName,setproductName]= useState('');
 
   const handleImageChange = (e) => {
     const file = e.target.files[0];
@@ -19,7 +21,7 @@ const UpdateProduct = (productName) => {
       await axios.put(
         `http://localhost:4000/api/v1/product/UpdateProduct/${productName}`, 
         {
-          Title: productName,
+          Title: NewproductName,
           Stock: stock,
           price: price,
           Description: Description
@@ -35,21 +37,25 @@ const UpdateProduct = (productName) => {
       setStock('');
       setDescription('');
       setImage(null);
+
     } catch (error) {
       console.error('Error updating data:', error);
     }
   };
 
   return (
+    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh', backgroundColor: '#f1f1f1' }}>
+    <Container maxWidth="sm" style={{ padding: '20px', border: '1px solid #ccc', borderRadius: '5px', backgroundColor: '#ffff' }}>  
     <form onSubmit={handleSubmit}>
-  <Grid container spacing={2} justifyContent="center" alignItems="center">
+  <Grid container spacing={2} justifyContent="center" alignItems="center" style={{ textAlign: 'center'}}>
   <Grid item xs={12}>
       <TextField
         fullWidth
         label="productName"
-        value={productName}        
+        value={productName}   
+        onChange={(e) => setproductName(e.target.value)}     
         required
-        sx={{ width: '200px' }} // Custom style to reduce the width
+        sx={{ width: '400px' }} // Custom style to reduce the width
       />
     </Grid>
     <Grid item xs={12}>
@@ -59,7 +65,7 @@ const UpdateProduct = (productName) => {
         value={NewproductName}
         onChange={(e) => setNewProductName(e.target.value)}
         required
-        sx={{ width: '200px' }} // Custom style to reduce the width
+        sx={{ width: '400px' }} // Custom style to reduce the width
       />
     </Grid>
     <Grid item xs={12}>
@@ -69,7 +75,7 @@ const UpdateProduct = (productName) => {
         value={price}
         onChange={(e) => setPrice(e.target.value)}
         required
-        sx={{ width: '200px' }} // Custom style to reduce the width
+        sx={{ width: '400px' }} // Custom style to reduce the width
       />
     </Grid>
     <Grid item xs={12}>
@@ -79,7 +85,7 @@ const UpdateProduct = (productName) => {
         value={stock}
         onChange={(e) => setStock(e.target.value)}
         required
-        sx={{ width: '200px' }} // Custom style to reduce the width
+        sx={{ width: '400px' }} // Custom style to reduce the width
       />
     </Grid>
     <Grid item xs={12}>
@@ -89,7 +95,7 @@ const UpdateProduct = (productName) => {
         value={Description}
         onChange={(e) => setDescription(e.target.value)}
         required
-        sx={{ width: '800px' }} // Custom style to reduce the width
+        sx={{ width: '400px' }} // Custom style to reduce the width
       />
     </Grid>
     <Grid item xs={12}>
@@ -112,7 +118,8 @@ const UpdateProduct = (productName) => {
     </Grid>
   </Grid>
 </form>
-
+</Container>
+</div>
   );
 };
 
