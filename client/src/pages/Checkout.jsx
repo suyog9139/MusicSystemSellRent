@@ -6,18 +6,31 @@ import axios from "axios";
 
 const Checkout = ({ amount, img, checkoutHandler }) => {
   const [first_name, setFirst_name] = useState("");
-  const [last_name, setLast_name] = useState("");
   const [phone, setPhone] = useState("");
   const [address, setAddress] = useState("");
-  const [country, setCountry] = useState("");
-  const [address2, setAddress2] = useState("");
   const [statet, setStatet] = useState("");
   const [zip, setZip] = useState("");
   const state = useSelector((state) => state.handleCart);
   // const auth = localStorage.getItem("user");
   const auth = JSON.parse(localStorage.getItem("user"));
   const [products, setProducts] = useState([]);
+  
+  const completeAddress = address+" "+statet +" "+zip;
+
   useEffect(() => {
+    var name = localStorage.getItem('user');
+    var obj = JSON.parse(name);
+    var name1 = obj.name;
+    setFirst_name(name1);
+
+    var number = obj.phone;
+    console.log(number);
+    const modifiedString = number.substring(2);
+    const newstr = "+91"+modifiedString
+    var number1 = newstr
+
+    setPhone(number1);
+
     const product = state.map((item) => [item.title,item.price, item.qty]);
     setProducts(product);
   }, []);
@@ -80,6 +93,8 @@ const Checkout = ({ amount, img, checkoutHandler }) => {
               razorpay_signature: response.razorpay_signature,
               product: products,
               customer_id: auth._id,
+              address:completeAddress,
+              
             }
           );
           if (success) {
@@ -87,7 +102,7 @@ const Checkout = ({ amount, img, checkoutHandler }) => {
           }
         },
         prefill: {
-          name: first_name + last_name,
+          name: first_name ,
           // email: "gaurav.kumar@example.com",
           contact: phone,
         },
@@ -100,8 +115,7 @@ const Checkout = ({ amount, img, checkoutHandler }) => {
       };
       const razor = new window.Razorpay(options);
       razor.open();
-    };
-
+    };                  
     return (
       <>
         <div className="container py-5">
@@ -141,24 +155,25 @@ const Checkout = ({ amount, img, checkoutHandler }) => {
                 <div className="card-body">
                   <form className="needs-validation" novalidate>
                     <div className="row g-3">
-                      <div className="col-sm-6 my-1">
+                      <div className="col-12 my-1">
                         <label for="firstName" className="form-label">
-                          First name
+                          Name
                         </label>
                         <input
                           type="text"
-                          className="form-control"
+                          className="form-control "
                           id="firstName"
                           placeholder=""
-                          value=""
+                          value={first_name}
+                          onChange={(e) => setFirst_name(e.target.value)}
                           required
                         />
                         <div className="invalid-feedback">
-                          Valid first name is required.
+                          Valid  Name is required.
                         </div>
                       </div>
 
-                      <div className="col-sm-6 my-1">
+                      {/* <div className="col-sm-6 my-1">
                         <label for="lastName" className="form-label">
                           Last name
                         </label>
@@ -173,18 +188,18 @@ const Checkout = ({ amount, img, checkoutHandler }) => {
                         <div className="invalid-feedback">
                           Valid last name is required.
                         </div>
-                      </div>
+                      </div> */}
 
                       <div className="col-12 my-1">
                         <label for="email" className="form-label">
                           Email
+                          <span> (Optional)</span>
                         </label>
                         <input
                           type="email"
                           className="form-control"
                           id="email"
                           placeholder="you@example.com"
-                          required
                         />
                         <div className="invalid-feedback">
                           Please enter a valid email address for shipping
@@ -201,6 +216,7 @@ const Checkout = ({ amount, img, checkoutHandler }) => {
                           className="form-control"
                           id="address"
                           placeholder="1234 Main St"
+                          onChange={(e) => setAddress(e.target.value)}
                           required
                         />
                         <div className="invalid-feedback">
@@ -208,18 +224,23 @@ const Checkout = ({ amount, img, checkoutHandler }) => {
                         </div>
                       </div>
 
-                      <div className="col-12">
-                        <label for="address2" className="form-label">
-                          Address 2{" "}
-                          <span className="text-muted">(Optional)</span>
-                        </label>
+                                        <div className="col-12">
+                    <label htmlFor="phoneNumber" className="form-label">
+                      Phone Number{" "}
+                      <span className="text-muted"></span>
+                    </label>
+                                        
                         <input
-                          type="text"
+                          type="tel"
                           className="form-control"
-                          id="address2"
-                          placeholder="Apartment or suite"
+                          id="phoneNumber"
+                          placeholder="Enter your phone number"
+                          pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+                          value={phone}
+                          onChange={(e) => setPhone(e.target.value)}
+                          required
                         />
-                      </div>
+                  </div>
 
                       <div className="col-md-5 my-1">
                         <label for="country" className="form-label">
@@ -240,9 +261,12 @@ const Checkout = ({ amount, img, checkoutHandler }) => {
                           State
                         </label>
                         <br />
-                        <select className="form-select" id="state" required>
-                          <option value="">Choose...</option>
-                          <option>Punjab</option>
+                        <select onChange={(e) => setStatet(e.target.value)}  className="form-select" id="state" required>
+                          <option  value="">Choose...</option>
+                          <option>Maharashtra</option>
+                          <option>Karnataka</option>
+                          <option>Goa</option>
+                          <option>Delhi</option>
                         </select>
                         <div className="invalid-feedback">
                           Please provide a valid state.
@@ -258,6 +282,7 @@ const Checkout = ({ amount, img, checkoutHandler }) => {
                           className="form-control"
                           id="zip"
                           placeholder=""
+                          onChange={(e) => setZip(e.target.value)}
                           required
                         />
                         <div className="invalid-feedback">
