@@ -1,16 +1,10 @@
-// import React from "react";
-// import { Footer, Navbar } from "../components";
-// import { useSelector, useDispatch } from "react-redux";
-// import { addCart, delCart } from "../redux/action";
-// import { Link } from "react-router-dom";
 
 import {React} from "react";
 import { Footer, Navbar } from "../components";
 import { useSelector, useDispatch } from "react-redux";
 import { addCart, delCart } from "../redux/action";
-import { Link, json } from "react-router-dom";
-import axios from "axios";
-import { useEffect, useState } from "react";
+import { Link} from "react-router-dom";
+import { useEffect} from "react";
 
 // const Cart = () => {
 //   const state = useSelector((state) => state.handleCart);
@@ -62,10 +56,12 @@ const Cart = () => {
         item.hasOwnProperty("qty")
       );
       filteredItems.map((item) => {
-        dispatch(addCart(item))
+        dispatch(addCart(item));
+        return null; // Add return statement here
       });
     }
- },[dispatch]);
+  }, [dispatch]);
+  
 
   useEffect(() => {
     localStorage.setItem("cart", JSON.stringify(state));
@@ -91,14 +87,7 @@ const Cart = () => {
   const removeItem = (product) => {
     dispatch(delCart(product));
   };
-  const postCartData = async (cartData) => {
-    try {
-      const response = await axios.post("/api/v1/cart/add-to-cart", cartData);
-      console.log(response.data); // Optional: Handle the response from the backend
-    } catch (error) {
-      console.error(error);
-    }
-  };
+
 
   const ShowCart = () => {
     let subtotal = 0;
