@@ -64,10 +64,10 @@ const Products = () => {
     );
   };
 
-  const filterProduct = (cat) => {
-    const updatedList = data.filter((item) => item.category === cat);
-    setFilter(updatedList);
-  }
+  // const filterProduct = (cat) => {
+  //   const updatedList = data.filter((item) => item.category === cat);
+  //   setFilter(updatedList);
+  // }
   const ShowProducts = () => {
     return (
       <>
