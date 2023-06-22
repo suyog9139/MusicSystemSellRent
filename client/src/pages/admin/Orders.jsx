@@ -1,4 +1,6 @@
-// import React from 'react'
+// import React, { useEffect, useState } from 'react'
+// import axios from 'axios';
+// import './User.css'
 
 // function Users() {
 //   const [myData, setMyData] = useState([]);
@@ -25,7 +27,7 @@
 //       <h1>Orderss</h1>
 //       {isError !== "" && <h2>{isError}</h2>}
 
-//       <div className="grid">
+//       {/* <div className="grid">
 //         {myData.map((post) => {
 //           const { name,phone} = post;
 //           return (
@@ -35,7 +37,7 @@
 //             </div>
 //           );
 //         })}
-//       </div>
+//       </div> */}
 //     </>
 //   );
 // };

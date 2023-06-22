@@ -14,7 +14,9 @@ const AddProduct = () => {
     e.preventDefault();
 
     try {
-      await axios.post(
+      const {
+        data: { success },
+      } =await axios.post(
         "http://localhost:4000/api/v1/product/AddProduct",
         {
           Title: productName,
@@ -25,11 +27,16 @@ const AddProduct = () => {
       );
 
       // Reset form fields
-      setProductName('');
-      setPrice('');
-      setStock('');
-      setDescription('');
-      setImage(null);
+      if (success) {
+        setProductName("");
+        setPrice("");
+        setStock("");
+        setDescription("");
+        setImage(null);
+      }
+      else{
+        console.log("Error")
+      }
     } catch (error) {
       if (error.response) {
         console.error('Server responded with a status code:', error.response.status);
@@ -40,6 +47,7 @@ const AddProduct = () => {
       } else {
         console.error('Error setting up the request:', error.message);
       }
+
     }
   };
 

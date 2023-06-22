@@ -1,4 +1,4 @@
-import Product from "../models/User.js"
+import User from "../models/User.js"
 export const GetAllUsers=async(req,res)=>{
     try{
         const UserList= await User.find({});

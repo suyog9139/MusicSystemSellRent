@@ -2,14 +2,14 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios';
 import './User.css'
 
-function Users() {
+const Users=()=> {
   const [myData, setMyData] = useState([]);
   const [isError, setIsError] = useState("");
 
   // using Async Await
   const getMyUserData = async () => {
     try {
-      const res = await axios.get("http://localhost:3000/api/v1/user");
+      const res = await axios.get("http://localhost:4000/api/v1/users");
       setMyData(res.data);
     } catch (error) {
       setIsError(error.message);

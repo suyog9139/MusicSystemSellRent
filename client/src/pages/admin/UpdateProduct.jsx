@@ -18,7 +18,9 @@ const UpdateProduct = () => {
 
   const handleSubmit = async () => {
     try {
-      await axios.put(
+      const {
+        data: { success },
+      }= await axios.put(
         `http://localhost:4000/api/v1/product/UpdateProduct/${productName}`, 
         {
           Title: NewproductName,
@@ -30,13 +32,15 @@ const UpdateProduct = () => {
           headers: { "Content-Type": "application/json" }
         }
       );
-
-      console.log('Data updated successfully');
-      setNewProductName('');
-      setPrice('');
-      setStock('');
-      setDescription('');
+      if(success){
+        console.log('Data updated successfully');
+        setNewProductName('');
+        setPrice('');
+        setStock('');
+          setDescription('');
       setImage(null);
+      }
+      
 
     } catch (error) {
       console.error('Error updating data:', error);

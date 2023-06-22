@@ -46,6 +46,10 @@ export const AddProduct = async (req, res) => {
     try {
       const newProduct = new Product(req.body); // Assuming the product data is sent in the request body
       const savedProduct = await newProduct.save();
+      res.status(200).json({
+        success: true,
+        savedProduct
+      });
       res.status(201).json(savedProduct);
     } catch (err) {
       res.status(400).json({ message: err.message });
@@ -77,8 +81,11 @@ export const AddProduct = async (req, res) => {
       if (!updatedProduct) {
         return res.status(404).json({ message: 'Product not found' });
       }
-  
-      res.status(200).json(updatedProduct);
+      res.status(200).json({
+        success: true,
+       updatedProduct
+      });
+      
     } catch (err) {
       res.status(500).json({ message: err.message });
     }

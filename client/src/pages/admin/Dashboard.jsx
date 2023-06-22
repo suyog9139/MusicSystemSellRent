@@ -28,6 +28,7 @@ import UpdateProduct from './UpdateProduct';
 import Orders from './Orders';
 import Users from './Users';
 import Dashboard from './Home';
+import ProductAdmin from './ProductAdmin';
 
 const drawerWidth = 240;
 function Navigation() {
@@ -82,6 +83,15 @@ function Navigation() {
               <ShoppingCartIcon />
             </ListItemIcon>
             <ListItemText>Orders</ListItemText>
+          </ListItemButton>
+        </ListItem>
+
+        <ListItem disablePadding onClick={() => handleNavigation('/ProductAdmin')}>
+          <ListItemButton>
+            <ListItemIcon>
+              <AddCircleIcon />
+            </ListItemIcon>
+            <ListItemText>List Product</ListItemText>
           </ListItemButton>
         </ListItem>
 
@@ -189,6 +199,7 @@ function ResponsiveDrawer(props) {
             <Route  path='/UpdateProduct' element={<UpdateProduct/>}></Route>
             <Route  path='/Orders' element={<Orders/>}></Route>
             <Route  path='/Users' element={<Users/>}></Route>
+            <Route path='/ProductAdmin' element={<ProductAdmin/>}></Route>
         </Routes>
       </Box>
     </Box>

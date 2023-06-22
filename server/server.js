@@ -8,13 +8,13 @@ import helmet from "helmet";
 import morgan from "morgan";
 import path from "path";
 import { fileURLToPath } from "url";
-import User from "./models/User.js";
+//import User from "./models/User.js";
 
 import authRoutes from "./routes/auth.js";
 import product from './routes/product.js'
 // import orders from './routes/orders.js'
 import payment from './routes/payment.js'
-// import User from './routes/User.js'
+import User from './routes/User.js'
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
