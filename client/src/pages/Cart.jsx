@@ -1,12 +1,75 @@
-import React from "react";
+// import React from "react";
+// import { Footer, Navbar } from "../components";
+// import { useSelector, useDispatch } from "react-redux";
+// import { addCart, delCart } from "../redux/action";
+// import { Link } from "react-router-dom";
+
+import {React} from "react";
 import { Footer, Navbar } from "../components";
 import { useSelector, useDispatch } from "react-redux";
 import { addCart, delCart } from "../redux/action";
-import { Link } from "react-router-dom";
+import { Link, json } from "react-router-dom";
+import axios from "axios";
+import { useEffect, useState } from "react";
+
+// const Cart = () => {
+//   const state = useSelector((state) => state.handleCart);
+//   const dispatch = useDispatch();
+
+//   const EmptyCart = () => {
+//     return (
+//       <div className="container">
+//         <div className="row">
+//           <div className="col-md-12 py-5 bg-light text-center">
+//             <h4 className="p-3 display-5">Your Cart is Empty</h4>
+//             <Link to="/" className="btn  btn-outline-dark mx-4">
+//               <i className="fa fa-arrow-left"></i> Continue Shopping
+//             </Link>
+//           </div>
+//         </div>
+//       </div>
+//     );
+//   };
+
+//   const addItem = (product) => {
+//     dispatch(addCart(product));
+//   };
+//   const removeItem = (product) => {
+//     dispatch(delCart(product));
+//   };
+
+//   const ShowCart = () => {
+//     let subtotal = 0;
+//     let shipping = 30.0;
+//     let totalItems = 0;
+//     state.map((item) => {
+//       return (subtotal += item.price * item.qty);
+//     });
+
+//     state.map((item) => {
+//       return (totalItems += item.qty);
+//     });
+
 
 const Cart = () => {
   const state = useSelector((state) => state.handleCart);
   const dispatch = useDispatch();
+  useEffect(() => {
+    const cartData = localStorage.getItem("cart");
+    if (cartData) {
+      const data = JSON.parse(cartData);
+      const filteredItems = data.filter((item) =>
+        item.hasOwnProperty("qty")
+      );
+      filteredItems.map((item) => {
+        dispatch(addCart(item))
+      });
+    }
+ },[dispatch]);
+
+  useEffect(() => {
+    localStorage.setItem("cart", JSON.stringify(state));
+  }, [state]);
 
   const EmptyCart = () => {
     return (
@@ -22,12 +85,19 @@ const Cart = () => {
       </div>
     );
   };
-
   const addItem = (product) => {
     dispatch(addCart(product));
   };
   const removeItem = (product) => {
     dispatch(delCart(product));
+  };
+  const postCartData = async (cartData) => {
+    try {
+      const response = await axios.post("/api/v1/cart/add-to-cart", cartData);
+      console.log(response.data); // Optional: Handle the response from the backend
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   const ShowCart = () => {
@@ -41,7 +111,7 @@ const Cart = () => {
     state.map((item) => {
       return (totalItems += item.qty);
     });
-    
+
     return (
       <>
         <section className="h-100 gradient-custom">
@@ -142,7 +212,7 @@ const Cart = () => {
                           <strong>Total amount</strong>
                         </div>
                         <span>
-                          <strong>${Math.round(subtotal + shipping)}</strong>
+                          <strong>${Math.round(subtotal)}</strong>
                         </span>
                       </li>
                     </ul>
@@ -176,5 +246,4 @@ const Cart = () => {
     </>
   );
 };
-
 export default Cart;
