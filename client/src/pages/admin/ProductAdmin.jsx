@@ -21,7 +21,9 @@ const ProductAdmin=()=>{
   }, []);
     return (
         <>
-          <h1>Products</h1>
+          <div className='heading'>
+    <h1>Products</h1>
+    </div>
           {isError !== "" && <h2>{isError}</h2>}
     
           <div className="grid">
@@ -29,10 +31,11 @@ const ProductAdmin=()=>{
               const { Title,Price,Stock,_id} = post;
               return (
                 <div key={Title} className="card">
-                  <h2>{Title}</h2>
-                  <h2>{Price}</h2>
-                  <h2>{Stock}</h2>
-                  <h2>{_id}</h2>
+
+                  <h2><strong>Prodict Name :</strong>{Title}</h2>
+                  <h2><strong>Product Cost :</strong> {Price}</h2>
+                  <h2><strong>Quantity: </strong>{Stock}</h2>
+                  <h2><strong>Product Id: </strong>{_id}</h2>
                 </div>
               );
             })}

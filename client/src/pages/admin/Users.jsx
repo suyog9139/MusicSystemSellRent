@@ -24,7 +24,12 @@ const Users=()=> {
 
   return (
     <>
-      <h1>Users</h1>
+  
+    <div className='heading'>
+    <h1>USERS</h1>
+    </div>
+     
+      <hr />
       {isError !== "" && <h2>{isError}</h2>}
 
       <div className="grid">
@@ -32,12 +37,17 @@ const Users=()=> {
           const { name,phone} = post;
           return (
             <div key={name} className="card">
-              <h2>{name}</h2>
-              <h2>{phone}</h2>
+            <div>
+              <strong>Name:</strong> {name}
             </div>
+            <div>
+              <strong>Phone Number:</strong> +{phone}
+            </div>
+          </div>
           );
         })}
       </div>
+      
     </>
   );
 };
