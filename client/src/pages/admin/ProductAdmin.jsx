@@ -58,9 +58,11 @@ const ProductAdmin = () => {
 
   return (
     <>
+    {/* <h1>Products</h1> */}
       <table>
         <thead>
           <tr>
+          <th>SI Number</th>
             <th>Product Name</th>
             <th>Product Cost</th>
             <th>Stock</th>
@@ -69,10 +71,11 @@ const ProductAdmin = () => {
           </tr>
         </thead>
         <tbody>
-          {myData.map((product) => {
+          {myData.map((product,index) => {
             const { _id, Title, Price, Stock } = product;
             return (
               <tr key={_id}>
+              <td>{index + 1}</td>
                 <td>{Title}</td>
                 <td>{Price}</td>
                 <td>{Stock}</td>
