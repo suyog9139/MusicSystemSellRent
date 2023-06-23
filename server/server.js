@@ -24,15 +24,7 @@ const app = express();
 app.use(express.json());
 app.use(cors())
 app.use(bodyParser.json());
-/* FOR IMAGE STORAGE */
-const storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, "public/assets");
-  },
-  filename: function (req, file, cb) {
-    cb(null, file.originalname);
-  },
-});
+
 
 
 app.use(function(req, res, next) {
@@ -45,8 +37,6 @@ app.use(function(req, res, next) {
 });
 
 
-const upload = multer({ storage });
-/* Routes */
 app.use("/auth", authRoutes);
 
 
@@ -63,7 +53,20 @@ mongoose
   })
   .catch((error) => console.log(`${error} did not connect`));
 
-//routes
+
+//storage of images
+var Storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+      cb(null, 'uploads')
+  },
+  filename: (req, file, cb) => {
+      cb(null, file.fieldname)
+  }
+});
+
+var upload = multer({ storage: Storage });
+
+  //routes
 
 app.get('/hello',(req,res)=>{
     res.send("Products")

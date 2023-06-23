@@ -10,50 +10,45 @@ const AddProduct = () => {
   const [price, setPrice] = useState('');
   const [image, setImage] = useState(null);
 
+  const handleFileChange = (e) => {
+    const selectedFile = e.target.files[0];
+    setImage(selectedFile);
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
-      const {
-        data: { success },
-      } =await axios.post(
-        "http://localhost:4000/api/v1/product/AddProduct",
+      const formData = new FormData();
+      formData.append('Title', productName);
+      formData.append('Stock', stock);
+      formData.append('Price', price);
+      formData.append('Description', description);
+      formData.append('Image', image);
+
+      const { data: { success } } = await axios.post(
+        'http://localhost:4000/api/v1/product/AddProduct',
+        formData,
         {
-          Title: productName,
-          Stock: stock,
-          Price: price,
-          Description: description
+          headers: {
+            'Content-Type': 'multipart/form-data',
+          },
         }
       );
 
       // Reset form fields
       if (success) {
-        setProductName("");
-        setPrice("");
-        setStock("");
-        setDescription("");
+        setProductName('');
+        setPrice('');
+        setStock('');
+        setDescription('');
         setImage(null);
-      }
-      else{
-        console.log("Error")
+      } else {
+        console.log('Error');
       }
     } catch (error) {
-      if (error.response) {
-        console.error('Server responded with a status code:', error.response.status);
-        console.error('Response data:', error.response.data);
-        console.error('Response headers:', error.response.headers);
-      } else if (error.request) {
-        console.error('No response received:', error.request);
-      } else {
-        console.error('Error setting up the request:', error.message);
-      }
-
+      console.error('Error:', error);
     }
-  };
-
-  const handleImageChange = (e) => {
-    const file = e.target.files[0];
-    setImage(file);
   };
 
   return (
@@ -108,7 +103,7 @@ const AddProduct = () => {
             accept="image/*"
             id="product-image"
             type="file"
-            onChange={handleImageChange}
+            onChange={handleFileChange}
           />
           <label htmlFor="product-image">
             <Button component="span" variant="contained" color="primary">

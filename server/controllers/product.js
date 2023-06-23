@@ -44,7 +44,17 @@ export const ShowPurchaseProduct=async(req,res)=>{
 // }
 export const AddProduct = async (req, res) => {
     try {
-      const newProduct = new Product(req.body); // Assuming the product data is sent in the request body
+      const newProduct = new Product({
+        Title:req.body.Title,
+        category:req.body.category,
+        Description:req.body.Description,
+        Price:req.body.Price,
+        Stock:req.body.Stock,
+        Image:{
+          data:req.file.filename,
+          contentType:'image/png'
+        }
+      }); // Assuming the product data is sent in the request body
       const savedProduct = await newProduct.save();
       res.status(200).json({
         success: true,
