@@ -46,7 +46,7 @@ export const AddProduct = async (req, res) => {
     try {
       const newProduct = new Product({
         Title:req.body.Title,
-        category:req.body.category,
+        Category:req.body.Category,
         Description:req.body.Description,
         Price:req.body.Price,
         Stock:req.body.Stock,
@@ -68,16 +68,19 @@ export const AddProduct = async (req, res) => {
 
   export const DeleteProduct = async (req, res) => {
     try {
-      const { productId } = req.params; // Assuming the product ID is passed as a URL parameter
-      const deletedProduct = await Product.findByIdAndDelete(productId);
-      
+      const { _id } = req.params; // Assuming the product ID is passed as a URL parameter  
+      // Find and delete the product with the given ID
+      const deletedProduct = await Product.findByIdAndDelete(_id);  
+      // If the product does not exist, return a 404 response
       if (!deletedProduct) {
         return res.status(404).json({ message: 'Product not found' });
       }
-      
-      res.status(200).json({ message: 'Product deleted successfully' });
-    } catch (err) {
-      res.status(500).json({ message: err.message });
+  
+      // If the product was successfully deleted, return a success message
+      return res.status(200).json({ message: 'Product deleted successfully' });
+    } catch (error) {
+      // Handle any errors that occur during the deletion process
+      return res.status(500).json({ message: error.message });
     }
   };
 

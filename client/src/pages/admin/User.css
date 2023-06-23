@@ -1,91 +1,51 @@
-h1 {
-  font-size: 50px;
-  text-align: center;
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: Arial, sans-serif;
+}
+
+th {
+  background-color: #f2f2f2;
+  color: #333333;
   font-weight: bold;
-
+  padding: 10px;
+  text-align: left;
 }
-.button {
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
-  background-color: #4caf50; 
-  border: black solid;
+
+td {
+  padding: 10px;
+}
+
+tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+button {
+  background-color: #4caf50;
+  border: none;
   color: white;
-  padding: 16px 32px;
+  padding: 8px 12px;
   text-align: center;
-  font-size: 16px;
-  margin: 4px 2px;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
+  border-radius: 4px;
   cursor: pointer;
-  background-color: rgb(130, 255, 139);
-  color: black;
-  border: 2px solid #000000;
-  border-radius: 10px;
-  justify-self: center;
-  margin-right: 20px;
-}
-.button:hover {
-  background-color: #000000;
-  color: white;
-}
-.button1{
-  justify-self: center;
-}
-.heading1 {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  margin-left: auto;
-  margin-right: auto;
-  margin-bottom: 10px;
-}
-.heading {
-  display: grid;
-  grid-column: 1;
-}
-.card {
-  padding: 1em;
-  border: 2px solid #000000;
-  background-color: #e8f7cc;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  font-size:medium;
 }
 
-.card h2 {
-  font-size: 1.5em;
-  color: #333;
-  margin-bottom: 0.5em;
+.button1 {
+  margin-right: 5px;
 }
 
-.card p {
-  font-size: 2em;
-  color: #666;
+.button1:hover {
+  background-color: #45a049;
 }
 
-.grid {
-  max-width: 75em;
-  width: 90%;
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 1.6rem;
-  justify-content: center;
-  align-items: center;
+.button2 {
+  background-color: #f44336;
 }
 
-/* Responsive styles */
-@media (max-width: 768px) {
-  .grid {
-    grid-template-columns: 1fr 1fr;
-  }
+.button2:hover {
+  background-color: #d32f2f;
 }
 
-@media (max-width: 480px) {
-  .grid {
-    grid-template-columns: 1fr;
-  }
-}

@@ -11,7 +11,7 @@ router.get("/:category",ShowCategoryProducts)
 router.get("/:rent",ShowRentableProduct)
 router.get("/:purchase",ShowPurchaseProduct)
 router.post("/AddProduct",AddProduct)
-router.delete("/DeleteProduct/:name",DeleteProduct)
-router.put("UpdateProduct/:name",UpdateProduct)
+router.delete("/DeleteProduct/:productid",DeleteProduct)
+router.put("UpdateProduct/:productid",UpdateProduct)
 export default router
 // module.exports= router

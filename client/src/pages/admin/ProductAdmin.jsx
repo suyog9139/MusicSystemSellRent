@@ -1,6 +1,26 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "./User.css";
+
+import { Container } from "@chakra-ui/react";
+
+const DeleteProduct = ({ productid }) => {
+  const handleDelete = async () => {
+    try {
+      await axios.delete(
+        `http://localhost:4000/api/v1/product/DeleteProduct/${productid}`
+      );
+      console.log("Product deleted successfully");
+      // Perform any additional actions after successful deletion
+    } catch (error) {
+      console.error("Error deleting product:", error);
+    }
+  };
+
+  // Return JSX or null depending on your component's requirements
+  return null;
+};
+
 const ProductAdmin = () => {
   const [myData, setMyData] = useState([]);
   const [isError, setIsError] = useState("");
@@ -15,48 +35,64 @@ const ProductAdmin = () => {
     }
   };
 
+  // Handle product deletion
+  const handleDeleteProduct = async (productid) => {
+    try {
+      await axios.delete(
+        `http://localhost:4000/api/v1/product/DeleteProduct/${productid}`
+      );
+      console.log("Product deleted successfully");
+      // Perform any additional actions after successful deletion
+
+      // Update the product list after deletion
+      getMyProducts();
+    } catch (error) {
+      console.error("Error deleting product:", error);
+    }
+  };
+
   // NOTE:  calling the function
   useEffect(() => {
     getMyProducts();
   }, []);
 
- 
   return (
     <>
-      <div className="heading">
-        <h1>Products</h1>
-      </div>
-      {isError !== "" && <h2>{isError}</h2>}
-
-      <div className="grid">
-        {myData.map((post) => {
-          const { Title, Price, Stock, _id } = post;
-          return (
-            <div key={Title} className="card">
-              <h2>
-                <strong>Prodict Name :</strong>
-                {Title}
-              </h2>
-              <h2>
-                <strong>Product Cost :</strong> {Price}
-              </h2>
-              <h2>
-                <strong>Quantity: </strong>
-                {Stock}
-              </h2>
-              <h2>
-                <strong>Product Id: </strong>
-                {_id}
-              </h2>
-              <div className="heading1">
-                <button  className="button button1">Update product</button>
-                <button  className="button button1">Delete product</button>
-              </div>
-            </div>
-          );
-        })}
-      </div>
+      <table>
+        <thead>
+          <tr>
+            <th>Product Name</th>
+            <th>Product Cost</th>
+            <th>Stock</th>
+            <th>Actions</th>
+            <th>id</th>
+          </tr>
+        </thead>
+        <tbody>
+          {myData.map((product) => {
+            const { _id, Title, Price, Stock } = product;
+            return (
+              <tr key={_id}>
+                <td>{Title}</td>
+                <td>{Price}</td>
+                <td>{Stock}</td>
+                <td>
+                  {/* <button className="button button1">Update product</button> */}
+                  <button
+                    className="button button1"
+                    onClick={() => handleDeleteProduct(_id)}
+                  >
+                    Delete product
+                  </button>
+                </td>
+                <td>{_id}</td>
+              </tr>
+            );
+          })}
+        </tbody>
+      </table>
     </>
   );
 };
+
 export default ProductAdmin;
