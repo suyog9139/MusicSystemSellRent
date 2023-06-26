@@ -35,7 +35,6 @@ const ProductAdmin = () => {
     }
   };
 
-  // Handle product deletion
   const handleDeleteProduct = async (productid) => {
     try {
       await axios.delete(
