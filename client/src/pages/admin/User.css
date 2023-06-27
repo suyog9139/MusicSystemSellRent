@@ -1,36 +1,50 @@
 table {
+  border-collapse: collapse;
   width: 100%;
   border-collapse: collapse;
-  font-family: Arial, sans-serif;
+  font-family: Helvetica, sans-serif;
+  
+}
+ h1{
+  text-align: center;
+  font-family: Helvetica, sans-serif;
+  font-weight: 600;
 }
 
 th {
-  background-color: #f2f2f2;
-  color: #333333;
-  font-weight: bold;
-  padding: 10px;
+  background-color: rgb(11, 25, 65);
+  height: 50px;
+  color: #ffffff;
+  padding: 19px;
   text-align: left;
+  text-align: center;
+  font-weight: lighter;
 }
 
 td {
-  padding: 10px;
+  padding: 15px;
+  
 }
 
+tr{
+  border-bottom: 1px solid #000000;
+  text-align: center;
+}
 tr:nth-child(even) {
-  background-color: #f9f9f9;
+  background-color: #d9e5ff;
 }
 
 button {
-  background-color: #4caf50;
-  border: none;
-  color: white;
-  padding: 8px 12px;
+  background-color: #4741f7;
+  color: rgb(0, 0, 0);
+  padding: 10px 12px;
   text-align: center;
   text-decoration: none;
   display: inline-block;
-  font-size: 14px;
+  font-size: 20px;
   border-radius: 4px;
   cursor: pointer;
+  border: #000000;
 }
 
 .button1 {
@@ -38,7 +52,7 @@ button {
 }
 
 .button1:hover {
-  background-color: #45a049;
+  background-color: #9b97ff;
 }
 
 .button2 {
@@ -49,3 +63,23 @@ button {
   background-color: #d32f2f;
 }
 
+/* .tableHeading{
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+} */
+
+@media screen and (max-width: 600px) {
+  table {
+    font-size: 12px;
+  }
+
+  th,
+  td {
+    padding: 5px;
+  }
+
+  .button1,
+  .button2 {
+    font-size: 12px;
+    padding: 5px 8px;
+  }
+}

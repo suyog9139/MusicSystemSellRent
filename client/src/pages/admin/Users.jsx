@@ -24,31 +24,38 @@ const Users=()=> {
 
   return (
     <>
-  
-    <div className='heading'>
-    <h1>USERS</h1>
-    </div>
-     
-      <hr />
-      {isError !== "" && <h2>{isError}</h2>}
 
-      <div className="grid">
-        {myData.map((post) => {
-          const { name,phone} = post;
-          return (
-            <div key={name} className="card">
-            <div>
-              <strong>Name:</strong> {name}
-            </div>
-            <div>
-              <strong>Phone Number:</strong> +{phone}
-            </div>
-          </div>
-          );
-        })}
-      </div>
-      
-    </>
+  <div className='heading'>
+    {/* <h1>USERS</h1> */}
+  </div>
+   
+  {isError !== "" && <h2>{isError}</h2>}
+
+  <>
+  <table>
+    <thead>
+      <tr>
+        <th>SI Number</th>
+        <th>Name</th>
+        <th>Phone Number</th>
+      </tr>
+    </thead>
+    <tbody>
+      {myData.map((user, index) => {
+        const { name, phone } = user;
+        return (
+          <tr key={name}>
+            <td>{index + 1}</td>
+            <td>{name}</td>
+            <td>+{phone}</td>
+          </tr>
+        );
+      })}
+    </tbody>
+  </table>
+</>
+
+</>
   );
 };
 
