@@ -68,9 +68,10 @@ export const AddProduct = async (req, res) => {
 
   export const DeleteProduct = async (req, res) => {
     try {
-      const { _id } = req.params; // Assuming the product ID is passed as a URL parameter  
+      const { productid } = req.params; // Assuming the product ID is passed as a URL parameter  
       // Find and delete the product with the given ID
-      const deletedProduct = await Product.findByIdAndDelete(_id);  
+      console.log(productid)
+      const deletedProduct = await Product.findByIdAndDelete(productid);  
       // If the product does not exist, return a 404 response
       if (!deletedProduct) {
         return res.status(404).json({ message: 'Product not found' });
