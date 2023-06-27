@@ -64,10 +64,10 @@ const Products = () => {
     );
   };
 
-  const filterProduct = (cat) => {
-    const updatedList = data.filter((item) => item.category === cat);
-    setFilter(updatedList);
-  }
+  // const filterProduct = (cat) => {
+  //   const updatedList = data.filter((item) => item.category === cat);
+  //   setFilter(updatedList);
+  // }
   const ShowProducts = () => {
     return (
       <>
@@ -80,11 +80,11 @@ const Products = () => {
           <button className="btn btn-outline-dark btn-sm m-2" onClick={() => filterProduct("jewelery")}>Jewelery</button>
           <button className="btn btn-outline-dark btn-sm m-2" onClick={() => filterProduct("electronics")}>Electronics</button>
         </div> */}
-        <div className="buttons text-center py-5 " >
+        {/* <div className="buttons text-center py-5 " >
           <button className="btn btn-outline-dark btn btn-light btn-lg m-3 " onClick={() => setFilter(data)}>All</button>
           <button className="btn btn-outline-dark btn btn-light btn-lg m-3" onClick={() => filterProduct("BUY")}>BUY</button>
           <button className="btn btn-outline-dark btn btn-light btn-lg m-3" onClick={() => filterProduct("RENT")}>RENT</button>
-        </div>
+        </div> */}
 
         {filter.map((product) => {
           return (
@@ -110,7 +110,7 @@ const Products = () => {
                   {/* <li className="list-group-item">Dapibus ac facilisis in</li>
                     <li className="list-group-item">Vestibulum at eros</li> */}
                 </ul>
-                <div className="card-body">
+                <div className="card-body" >
                   <Link to={"/product/" + product.id} className="btn btn-dark m-1">
                     Buy Now
                   </Link>

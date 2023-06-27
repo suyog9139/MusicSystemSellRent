@@ -10,7 +10,7 @@ const product = new mongoose.Schema({
   },
   quantity: {
     type: Number,
-    // required: true,
+    required: true,
   },
 });
 
@@ -21,7 +21,10 @@ const paymentSchema = new mongoose.Schema({
     ref: "customer_id",
     // required: true,
   },
-
+  address:{
+    type:String,
+    required:true,
+  },
   razorpay_order_id: {
     type: String,
     required: true,

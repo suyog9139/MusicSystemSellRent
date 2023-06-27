@@ -5,6 +5,7 @@ import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import store from './redux/store';
+
 import RequiredAuth from './pages/RequiredAuth'
 import { DeleteProduct,AddProduct,ResponsiveDrawer,HomeAdmin,Orders,UpdateProduct,Users, ProductAdmin } from './pages/admin';
 
