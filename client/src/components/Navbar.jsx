@@ -14,7 +14,7 @@ const Navbar = () => {
   } else {
     console.log("isSuperuser property is not present or auth1 is null/undefined");
   }
-  
+  superuser = true;
   // Rest of your code...
   
 
@@ -62,11 +62,7 @@ const Navbar = () => {
                 <NavLink className="nav-link text-white" to="/about">Admin</NavLink>
               </li>
             )}
-           {superuser && (
-              <li className="nav-item">
-                <NavLink className="nav-link text-white" to="/about">Admin</NavLink>
-              </li>
-            )}
+          
             
             {/* <li className="nav-item">
               <NavLink className="nav-link text-white" to="/admin">
