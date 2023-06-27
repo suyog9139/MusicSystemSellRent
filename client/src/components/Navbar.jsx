@@ -15,8 +15,7 @@ const Navbar = () => {
     console.log("isSuperuser property is not present or auth1 is null/undefined");
   }
   superuser = true;
-  // Rest of your code...
-  
+
 
   const state = useSelector((state) => state.handleCart);
   const navigate = useNavigate();
@@ -59,7 +58,7 @@ const Navbar = () => {
             </li>
             {superuser && (
               <li className="nav-item">
-                <NavLink className="nav-link text-white" to="/about">Admin</NavLink>
+                <NavLink className="nav-link text-white" to="/admin">Admin</NavLink>
               </li>
             )}
           
