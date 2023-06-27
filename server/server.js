@@ -55,16 +55,18 @@ mongoose
 
 
 //storage of images
-var Storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-      cb(null, 'uploads')
-  },
-  filename: (req, file, cb) => {
-      cb(null, file.fieldname)
-  }
-});
+// var Storage = multer.diskStorage({
+//   destination: (req, file, cb) => {
+//       cb(null, 'uploads')
+//   },
+//   filename: (req, file, cb) => {
+//       cb(null, file.fieldname)
+//   }
+// });
 
-var upload = multer({ storage: Storage });
+// var upload = multer({ storage: Storage });
+
+
 
   //routes
 
@@ -84,9 +86,9 @@ app.get("/api/getkey", (req, res) =>
 
 
 
-import crypto from 'crypto';
-const jwtSecret = crypto.randomBytes(32).toString('hex');
-console.log(jwtSecret)
+// import crypto from 'crypto';
+// const jwtSecret = crypto.randomBytes(32).toString('hex');
+// console.log(jwtSecret)
 
 
 // Razorpay

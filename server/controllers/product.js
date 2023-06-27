@@ -43,27 +43,31 @@ export const ShowPurchaseProduct=async(req,res)=>{
 //     GetAllProducts,ShowCategoryProducts
 // }
 export const AddProduct = async (req, res) => {
-    try {
-      const newProduct = new Product({
-        Title:req.body.Title,
-        Category:req.body.Category,
-        Description:req.body.Description,
-        Price:req.body.Price,
-        Stock:req.body.Stock,
-        Image:{
-          data:req.file.filename,
-          contentType:'image/png'
-        }
-      }); // Assuming the product data is sent in the request body
-      const savedProduct = await newProduct.save();
-      res.status(200).json({
-        success: true,
-        savedProduct
-      });
-      res.status(201).json(savedProduct);
-    } catch (err) {
-      res.status(400).json({ message: err.message });
-    }
+  console.log(req.body)
+   // try {
+      // const newProduct = new Product({
+      //   Title:req.body.Title,
+      //   Category:req.body.Category,
+      //   Description:req.body.Description,
+      //   Price:req.body.Price,
+      //   Stock:req.body.Stock,
+      //   // Image:req.body.fileName
+      //   Image:{
+      //     data:req.file.filename,
+      //     contentType:'image/png'
+      //   }
+      // }); // Assuming the product data is sent in the request body
+      // console.log(newProduct);
+      // const savedProduct = await newProduct.save();
+      
+    //   res.status(200).json({
+    //     success: true,
+    //     //savedProduct
+    //   });
+    //   res.status(201).json(savedProduct);
+    // } catch (err) {
+    //   res.status(400).json({ message: err.message });
+     //}
   };
 
   export const DeleteProduct = async (req, res) => {
