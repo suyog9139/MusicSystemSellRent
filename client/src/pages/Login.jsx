@@ -6,7 +6,6 @@ import PhoneInput from "react-phone-input-2";
 
 import AuthContext from "../context/AuthProvider";
 import { useNavigate, useLocation } from "react-router-dom";
-
 import axios from "axios";
 
 const Login = () => {

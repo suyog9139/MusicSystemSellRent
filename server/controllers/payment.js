@@ -2,7 +2,6 @@ import { instance } from "../server.js";
 import crypto from "crypto";
 import { Payment } from "../models/payment.js";
 import dotenv from "dotenv";
-import mongoose from "mongoose";
 dotenv.config();
 
 export const checkout = async (req, res) => {
@@ -26,6 +25,7 @@ export const paymentVerification = async (req, res) => {
     razorpay_payment_id,
     razorpay_signature,
     customer_id,
+    address,
     product,
   } = req.body;
   // console.log(process.env.RAZORPAY_API_SECRET)
@@ -57,6 +57,7 @@ export const paymentVerification = async (req, res) => {
       const payment = await Payment.create({
         product: productDocuments,
         customer: customer_id,
+        address,
         razorpay_order_id,
         razorpay_payment_id,
         razorpay_signature,
@@ -95,7 +96,6 @@ export const paymentVerification = async (req, res) => {
 import { User } from "../models/User.js";
 // import { Product } from "../models/product.js";
 import { Product } from "../models/Product.js";
-
 
 export const GetPaymentDetails = async (req, res) => {
   const { razorpay_payment_id } = req.body;
@@ -138,10 +138,12 @@ export const GetPaymentDetails = async (req, res) => {
       customer: {
         name: customer.name,
         phone: customer.phone,
+        
       },
       payment:{
         products:payment.product,
-        order_id:payment.razorpay_order_id
+        order_id:payment.razorpay_order_id,
+
       }
     };
 
