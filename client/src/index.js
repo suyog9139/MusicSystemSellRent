@@ -6,10 +6,15 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import store from './redux/store';
 
+import RequiredAuth from './pages/RequiredAuth'
+import { DeleteProduct,AddProduct,ResponsiveDrawer,HomeAdmin,Orders,UpdateProduct,Users, ProductAdmin } from './pages/admin';
+
 
 import { Home, Product, Products, AboutPage, ContactPage, Cart, Login, Register, Checkout, PageNotFound, PaymentSuccess } from "./pages"
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
+const auth = JSON.parse(localStorage.getItem("user"));
+
 root.render(
   <BrowserRouter>
     <Provider store={store}>
@@ -27,6 +32,14 @@ root.render(
         <Route path="/paymentsuccess" element={< PaymentSuccess/>} />
         <Route path="*" element={<PageNotFound />} />
         <Route path="/product/*" element={<PageNotFound />} />
+
+        <Route path="/admin" element={<ResponsiveDrawer />} />
+        <Route  path='/AddProduct' element={<AddProduct/>}></Route>
+        <Route  path='/DeleteProduct' element={<DeleteProduct/>}></Route>
+        <Route  path='/UpdateProduct' element={<UpdateProduct/>}></Route>
+        <Route  path='/Orders' element={<Orders/>}></Route>
+        <Route  path='/Customers' element={<Users/>}></Route>
+        <Route path='/ProductAdmin' element={<ProductAdmin/>}></Route>
       </Routes>
     </Provider>
   </BrowserRouter>

@@ -6,7 +6,7 @@ const ProductSchema= new mongoose.Schema({
     },
     Category:{
         type:String,
-        required:true
+        required:false
     },
     Description:{
         type:String,
@@ -21,7 +21,9 @@ const ProductSchema= new mongoose.Schema({
         required:true
     },
     Image:{
-        type:String
+        data:Buffer,
+        contentType: String
+        
     }
 },{timestamp:true});
 

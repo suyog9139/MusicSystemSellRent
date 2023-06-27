@@ -8,12 +8,13 @@ import helmet from "helmet";
 import morgan from "morgan";
 import path from "path";
 import { fileURLToPath } from "url";
-import User from "./models/User.js";
+//import User from "./models/User.js";
 
 import authRoutes from "./routes/auth.js";
 import product from './routes/product.js'
 // import orders from './routes/orders.js'
 import payment from './routes/payment.js'
+import User from './routes/User.js'
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -23,15 +24,7 @@ const app = express();
 app.use(express.json());
 app.use(cors())
 app.use(bodyParser.json());
-/* FOR IMAGE STORAGE */
-const storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, "public/assets");
-  },
-  filename: function (req, file, cb) {
-    cb(null, file.originalname);
-  },
-});
+
 
 
 app.use(function(req, res, next) {
@@ -44,8 +37,6 @@ app.use(function(req, res, next) {
 });
 
 
-const upload = multer({ storage });
-/* Routes */
 app.use("/auth", authRoutes);
 
 
@@ -62,12 +53,28 @@ mongoose
   })
   .catch((error) => console.log(`${error} did not connect`));
 
-//routes
+
+//storage of images
+// var Storage = multer.diskStorage({
+//   destination: (req, file, cb) => {
+//       cb(null, 'uploads')
+//   },
+//   filename: (req, file, cb) => {
+//       cb(null, file.fieldname)
+//   }
+// });
+
+// var upload = multer({ storage: Storage });
+
+
+
+  //routes
 
 app.get('/hello',(req,res)=>{
     res.send("Products")
 })
 app.use('/api/v1/product',product)
+app.use('/api/v1/users',User)
 // app.use('/api/v1/orders',orders)
 app.use('/api/v1/auth',authRoutes)
 // app.use('/api/v1/payment',payment)
@@ -79,9 +86,9 @@ app.get("/api/getkey", (req, res) =>
 
 
 
-import crypto from 'crypto';
-const jwtSecret = crypto.randomBytes(32).toString('hex');
-console.log(jwtSecret)
+// import crypto from 'crypto';
+// const jwtSecret = crypto.randomBytes(32).toString('hex');
+// console.log(jwtSecret)
 
 
 // Razorpay

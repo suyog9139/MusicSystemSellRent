@@ -1,9 +1,23 @@
 import React from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
-
 const Navbar = () => {
   const auth = localStorage.getItem("user");
+  const auth1 = JSON.parse(auth);
+  console.log(auth1);
+  
+  let superuser = false;
+  
+  if (auth1 !== null && typeof auth1 === "object" && auth1.hasOwnProperty("isSuperuser")) {
+    superuser = auth1.isSuperuser;
+    console.log(superuser);
+  } else {
+    console.log("isSuperuser property is not present or auth1 is null/undefined");
+  }
+  
+  // Rest of your code...
+  
+
   const state = useSelector((state) => state.handleCart);
   const navigate = useNavigate();
   const logout = () => {
@@ -43,14 +57,22 @@ const Navbar = () => {
                 Products
               </NavLink>
             </li>
+            {superuser && (
+              <li className="nav-item">
+                <NavLink className="nav-link text-white" to="/about">Admin</NavLink>
+              </li>
+            )}
+           {superuser && (
+              <li className="nav-item">
+                <NavLink className="nav-link text-white" to="/about">Admin</NavLink>
+              </li>
+            )}
+            
             {/* <li className="nav-item">
-                            <NavLink className="nav-link text-white" to="/about">About</NavLink>
-                        </li> */}
-            <li className="nav-item">
-              <NavLink className="nav-link text-white" to="/contact">
+              <NavLink className="nav-link text-white" to="/admin">
                 Admin
               </NavLink>
-            </li>
+            </li> */}
             <li className="nav-item">
               <NavLink className="nav-link text-white" to="/contact">
                 Contact
