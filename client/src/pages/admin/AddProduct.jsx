@@ -26,7 +26,7 @@ const AddProduct = () => {
       formData.append('Description', description);
       formData.append('Image', image);
 
-      const { data: { success } } = await axios.post(
+      const { data: { savedProduct } } = await axios.post(
         'http://localhost:4000/api/v1/product/AddProduct',
         formData,
         {
@@ -36,16 +36,13 @@ const AddProduct = () => {
         }
       );
 
-      // Reset form fields
-      if (success) {
-        setProductName('');
-        setPrice('');
-        setStock('');
-        setDescription('');
-        setImage(null);
-      } else {
-        console.log('Error');
-      }
+      setProductName('');
+      setPrice('');
+      setStock('');
+      setDescription('');
+      setImage(null);
+
+      console.log('Product added:', savedProduct);
     } catch (error) {
       console.error('Error:', error);
     }

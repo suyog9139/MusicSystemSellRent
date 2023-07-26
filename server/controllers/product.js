@@ -62,10 +62,11 @@ export const AddProduct = async (req, res) => {
       const savedProduct = await newProduct.save();
       res.setHeader('Content-Type', 'application/json');
       res.setHeader('Access-Control-Allow-Origin', '*');
-      res.status(200).json({
-        success: true,
-        //savedProduct
-      });
+      // res.status(200).json({
+      //   success: true,
+      //   //savedProduct
+      // });
+      // res.status(201).json(savedProduct);
       res.status(201).json(savedProduct);
     } catch (err) {
       res.status(400).json({ message: err.message });
