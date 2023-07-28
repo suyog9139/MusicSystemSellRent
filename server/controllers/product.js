@@ -94,20 +94,31 @@ export const AddProduct = async (req, res) => {
 
   export const UpdateProduct = async (req, res) => {
     try {
-      const { productId } = req.params; // Assuming the product ID is passed as a URL parameter
-      const updatedProduct = await Product.findByIdAndUpdate(productId, req.body, {
-        new: true,
-      });
+      const productid = req.params.id; // Assuming the product ID is passed as a parameter in the URL
+      const updatedProductData = {
+        Title: req.body.Title,
+        Category: req.body.Category,
+        Description: req.body.Description,
+        Price: req.body.Price,
+        Stock: req.body.Stock,
+        // If you want to update the image as well, you can include Image data here
+        Image: {
+          data: req.file.filename,
+          contentType: 'image/png'
+        }
+      };
+  
+      // Find the product by ID and update its data
+      const updatedProduct = await Product.findByIdAndUpdate(productid, updatedProductData, { new: true });
   
       if (!updatedProduct) {
-        return res.status(404).json({ message: 'Product not found' });
+        return res.status(404).json({ message: "Product not found" });
       }
-      res.status(200).json({
-        success: true,
-       updatedProduct
-      });
-      
+  
+      res.setHeader('Content-Type', 'application/json');
+      res.setHeader('Access-Control-Allow-Origin', '*');
+      res.status(200).json(updatedProduct);
     } catch (err) {
-      res.status(500).json({ message: err.message });
+      res.status(400).json({ message: err.message });
     }
   };

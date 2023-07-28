@@ -104,11 +104,13 @@ const UpdateProduct = () => {
     </Grid>
     <Grid item xs={12}>
       <input
+      fullWidth
         accept="image/*"
         id="product-image"
         type="file"
         onChange={handleImageChange}
-      />
+        sx={{ width: '400px' }}
+      />      
       <label htmlFor="product-image">
         <Button component="span" variant="contained" color="primary">
           Upload Image

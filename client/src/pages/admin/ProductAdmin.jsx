@@ -1,25 +1,13 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "./User.css";
-
+import { useHistory,Routes,Route,useNavigate, Navigate } from 'react-router-dom';
 import { Container } from "@chakra-ui/react";
+import UpdateProduct from './UpdateProduct';
 
-const DeleteProduct = ({ productid }) => {
-  const handleDelete = async () => {
-    try {
-      await axios.delete(
-        `http://localhost:4000/api/v1/product/DeleteProduct/${productid}`
-      );
-      console.log("Product deleted successfully");
-      // Perform any additional actions after successful deletion
-    } catch (error) {
-      console.error("Error deleting product:", error);
-    }
-  };
 
-  // Return JSX or null depending on your component's requirements
-  return null;
-};
+
+
 
 const ProductAdmin = () => {
   const [myData, setMyData] = useState([]);
@@ -55,8 +43,16 @@ const ProductAdmin = () => {
     getMyProducts();
   }, []);
 
+
+
+
+
+  const navigate = useNavigate();
+  
   return (
+    
     <>
+    
     {/* <h1>Products</h1> */}
       <table>
         <thead>
@@ -65,7 +61,8 @@ const ProductAdmin = () => {
             <th>Product Name</th>
             <th>Product Cost</th>
             <th>Stock</th>
-            <th>Actions</th>
+            <th>Delete Product</th>
+            <th>Update Product</th>
             <th>id</th>
           </tr>
         </thead>
@@ -85,6 +82,15 @@ const ProductAdmin = () => {
                     onClick={() => handleDeleteProduct(_id)}
                   >
                     Delete product
+                  </button>
+                </td>
+                <td>
+                  {/* <button className="button button1">Update product</button> */}
+                  <button
+                    className="button button1"
+                    onClick={()=>navigate(`/UpdateProduct`)}
+                  >
+                    Update product
                   </button>
                 </td>
                 <td>{_id}</td>
