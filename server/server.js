@@ -75,7 +75,6 @@ app.get('/hello',(req,res)=>{
 })
 app.use('/api/v1/product',product)
 app.use('/api/v1/users',User)
-// app.use('/api/v1/orders',orders)
 app.use('/api/v1/auth',authRoutes)
 // app.use('/api/v1/payment',payment)
 app.use("/api", payment);
@@ -84,11 +83,6 @@ app.get("/api/getkey", (req, res) =>
   res.status(200).json({ key: process.env.RAZORPAY_API_KEY })
 );
 
-
-
-// import crypto from 'crypto';
-// const jwtSecret = crypto.randomBytes(32).toString('hex');
-// console.log(jwtSecret)
 
 
 // Razorpay

@@ -13,7 +13,7 @@ import { DeleteProduct,AddProduct,ResponsiveDrawer,HomeAdmin,Orders,UpdateProduc
 import { Home, Product, Products, AboutPage, ContactPage, Cart, Login, Register, Checkout, PageNotFound, PaymentSuccess } from "./pages"
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
-const auth = JSON.parse(localStorage.getItem("user"));
+// const auth = JSON.parse(localStorage.getItem("user"));
 
 root.render(
   <BrowserRouter>
